@@ -25,6 +25,7 @@
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
             --border-radius: 16px;
             --border-radius-lg: 24px;
+            --max-width: 1400px;
         }
 
         * {
@@ -45,6 +46,7 @@
             background-color: var(--primary-color);
             min-height: 100vh;
             overflow-x: hidden;
+            transition: background-color 0.3s ease;
         }
 
         h1, h2, h3, h4 {
@@ -61,7 +63,7 @@
 
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: var(--max-width);
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -165,6 +167,34 @@
             display: flex;
             align-items: center;
             gap: 15px;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 5px;
+            background: var(--light-gray);
+            border-radius: 20px;
+            padding: 5px;
+        }
+
+        .language-switcher button {
+            background: none;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 16px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .language-switcher button.active {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .language-switcher button:hover:not(.active) {
+            background: rgba(0, 0, 0, 0.05);
         }
 
         /* Hero Section dengan Asimetri */
@@ -341,47 +371,75 @@
             filter: blur(20px);
         }
 
-        /* Section Styling */
-        section {
-            padding: 100px 0;
-            position: relative;
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 0;
+            background-color: white;
         }
 
-        .section-title {
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
             text-align: center;
-            margin-bottom: 4rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--medium-gray);
+            transition: var(--transition);
             position: relative;
+            overflow: hidden;
         }
 
-        .section-title h2 {
-            font-size: 3rem;
-            display: inline-block;
-            position: relative;
-            padding-bottom: 15px;
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-color);
         }
 
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 5px;
-            background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
-            border-radius: 5px;
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
         }
 
-        .section-title p {
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .stat-label {
             color: var(--dark-gray);
             font-size: 1.1rem;
-            max-width: 600px;
-            margin: 1rem auto 0;
+            font-weight: 500;
+        }
+
+        .stat-trend {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 5px 12px;
+            background: var(--success-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .stat-trend.down {
+            background: var(--danger-color);
         }
 
         /* Projects Section */
         .projects-section {
-            background-color: white;
+            background-color: var(--light-gray);
         }
 
         .projects-grid {
@@ -475,7 +533,7 @@
 
         /* Articles Section */
         .articles-section {
-            background-color: var(--light-gray);
+            background-color: white;
         }
 
         .articles-grid {
@@ -544,7 +602,7 @@
 
         /* Certificates Section */
         .certificates-section {
-            background-color: white;
+            background-color: var(--light-gray);
         }
 
         .certificates-grid {
@@ -594,7 +652,7 @@
 
         /* Experience Section */
         .experience-section {
-            background-color: var(--light-gray);
+            background-color: white;
         }
 
         .experience-grid {
@@ -639,9 +697,152 @@
             padding: 0 25px 25px;
         }
 
+        /* Awards Section */
+        .awards-section {
+            background-color: var(--light-gray);
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .award-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--medium-gray);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .award-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .award-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-color);
+        }
+
+        .award-header {
+            padding: 25px 25px 15px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .award-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .award-content {
+            padding: 0 25px 25px;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background-color: white;
+        }
+
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--medium-gray);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .testimonial-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #475569;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--accent-color);
+            opacity: 0.3;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .testimonial-nav button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+            background: white;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .testimonial-nav button:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
         /* Competency Section */
         .competency-section {
-            background-color: white;
+            background-color: var(--light-gray);
         }
 
         .skills-container {
@@ -715,7 +916,7 @@
 
         /* Collaboration Section */
         .collaboration-section {
-            background-color: var(--light-gray);
+            background-color: white;
         }
 
         .collaboration-container {
@@ -773,7 +974,7 @@
         /* Ask Me Section */
         .ask-me-section {
             padding: 100px 0;
-            background-color: white;
+            background-color: var(--light-gray);
         }
 
         .ask-container {
@@ -861,7 +1062,7 @@
         /* Photo Session */
         .photo-session {
             padding: 100px 0;
-            background-color: var(--light-gray);
+            background-color: white;
         }
 
         .photo-grid {
@@ -901,6 +1102,32 @@
 
         .photo-item:hover img {
             transform: scale(1.1);
+        }
+
+        /* Visitor Counter */
+        .visitor-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .visitor-counter:hover {
+            transform: translateY(-5px);
+        }
+
+        .visitor-counter i {
+            font-size: 1.2rem;
         }
 
         /* Modal Popup */
@@ -1053,6 +1280,52 @@
             font-size: 0.9rem;
         }
 
+        /* Section Styling */
+        section {
+            padding: 100px 0;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            display: inline-block;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+            border-radius: 5px;
+        }
+
+        .section-title p {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 1rem auto 0;
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -1090,6 +1363,12 @@
             to { width: var(--target-width); }
         }
 
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
         /* Responsive Design */
         @media (max-width: 1100px) {
             .hero-content {
@@ -1107,7 +1386,7 @@
                 font-size: 3.2rem;
             }
             
-            .ask-container, .competency-container {
+            .ask-container {
                 flex-direction: column;
             }
             
@@ -1165,12 +1444,52 @@
             .projects-grid,
             .articles-grid,
             .certificates-grid,
-            .experience-grid {
+            .experience-grid,
+            .awards-grid {
                 grid-template-columns: 1fr;
             }
             
             .footer-content {
                 grid-template-columns: 1fr;
+            }
+            
+            .visitor-counter {
+                bottom: 10px;
+                right: 10px;
+                font-size: 0.8rem;
+                padding: 8px 15px;
+            }
+            
+            .header-actions {
+                gap: 10px;
+            }
+            
+            .language-switcher button {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+            
+            .container {
+                padding: 0 15px;
             }
         }
 
@@ -1182,9 +1501,33 @@
         .float-animation {
             animation: float 6s ease-in-out infinite;
         }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Page Transition */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-color);
+            z-index: 9999;
+            transform: translateY(100%);
+            transition: transform 0.6s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+
+        .page-transition.active {
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
+    <!-- Page Transition Overlay -->
+    <div class="page-transition" id="pageTransition"></div>
+
     <!-- Header & Navigation -->
     <header id="header">
         <div class="container">
@@ -1194,16 +1537,22 @@
                     <i class="fas fa-bars"></i>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#articles">Publications</a></li>
-                    <li><a href="#certificates">Certificates</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#competency">Competency</a></li>
-                    <li><a href="#collaboration">Collaboration</a></li>
+                    <li><a href="#home" data-i18n="nav.home">Home</a></li>
+                    <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+                    <li><a href="#articles" data-i18n="nav.publications">Publications</a></li>
+                    <li><a href="#certificates" data-i18n="nav.certificates">Certificates</a></li>
+                    <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+                    <li><a href="#awards" data-i18n="nav.awards">Awards</a></li>
+                    <li><a href="#testimonials" data-i18n="nav.testimonials">Testimonials</a></li>
+                    <li><a href="#competency" data-i18n="nav.competency">Competency</a></li>
+                    <li><a href="#collaboration" data-i18n="nav.collaboration">Collaboration</a></li>
                 </ul>
                 <div class="header-actions">
-                    <a href="https://drive.google.com/file/d/1EXAMPLE/view?usp=sharing" target="_blank" class="btn btn-small">
+                    <div class="language-switcher">
+                        <button class="active" id="langEN">EN</button>
+                        <button id="langID">ID</button>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1EXAMPLE/view?usp=sharing" target="_blank" class="btn btn-small" data-i18n="nav.download_cv">
                         <i class="fas fa-download"></i> Download CV
                     </a>
                 </div>
@@ -1211,16 +1560,22 @@
         </div>
     </header>
 
+    <!-- Visitor Counter -->
+    <div class="visitor-counter" id="visitorCounter">
+        <i class="fas fa-eye"></i>
+        <span id="visitorCount">1</span> visitors
+    </div>
+
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content fade-in">
                 <div class="hero-text">
-                    <h1>Ngurah Sentana</h1>
-                    <p>Data Scientist & Computer Science Specialist with expertise in Statistics, Machine Learning, and Software Development. Creating elegant and functional data-driven solutions.</p>
+                    <h1 data-i18n="hero.title">Ngurah Sentana</h1>
+                    <p data-i18n="hero.description">Data Scientist & Computer Science Specialist with expertise in Statistics, Machine Learning, and Software Development. Creating elegant and functional data-driven solutions.</p>
                     <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                        <a href="#projects" class="btn">View Projects</a>
-                        <a href="#contact" class="btn btn-outline">Contact Me</a>
+                        <a href="#projects" class="btn" data-i18n="hero.view_projects">View Projects</a>
+                        <a href="#contact" class="btn btn-outline" data-i18n="hero.contact_me">Contact Me</a>
                     </div>
                 </div>
                 <div class="hero-image float-animation">
@@ -1232,12 +1587,21 @@
         </div>
     </section>
 
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-container" id="statsContainer">
+                <!-- Stats will be filled by JavaScript -->
+            </div>
+        </div>
+    </section>
+
     <!-- Projects Section -->
     <section class="projects-section" id="projects">
         <div class="container">
             <div class="section-title">
-                <h2>Projects</h2>
-                <p>Data science and software development projects showcasing practical applications</p>
+                <h2 data-i18n="projects.title">Projects</h2>
+                <p data-i18n="projects.description">Data science and software development projects showcasing practical applications</p>
             </div>
             <div class="projects-grid" id="projectsGrid">
                 <!-- Cards will be filled by JavaScript -->
@@ -1249,8 +1613,8 @@
     <section class="articles-section" id="articles">
         <div class="container">
             <div class="section-title">
-                <h2>Publications</h2>
-                <p>Research papers and articles published in scientific journals</p>
+                <h2 data-i18n="articles.title">Publications</h2>
+                <p data-i18n="articles.description">Research papers and articles published in scientific journals</p>
             </div>
             <div class="articles-grid" id="articlesGrid">
                 <!-- Cards will be filled by JavaScript -->
@@ -1262,8 +1626,8 @@
     <section class="certificates-section" id="certificates">
         <div class="container">
             <div class="section-title">
-                <h2>Certificates</h2>
-                <p>Professional certifications and completed courses</p>
+                <h2 data-i18n="certificates.title">Certificates</h2>
+                <p data-i18n="certificates.description">Professional certifications and completed courses</p>
             </div>
             <div class="certificates-grid" id="certificatesGrid">
                 <!-- Cards will be filled by JavaScript -->
@@ -1275,11 +1639,43 @@
     <section class="experience-section" id="experience">
         <div class="container">
             <div class="section-title">
-                <h2>Experience</h2>
-                <p>Professional journey and work experience</p>
+                <h2 data-i18n="experience.title">Experience</h2>
+                <p data-i18n="experience.description">Professional journey and work experience</p>
             </div>
             <div class="experience-grid" id="experienceGrid">
                 <!-- Cards will be filled by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section class="awards-section" id="awards">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-i18n="awards.title">Awards & Recognitions</h2>
+                <p data-i18n="awards.description">Achievements, awards, and speaking engagements</p>
+            </div>
+            <div class="awards-grid" id="awardsGrid">
+                <!-- Cards will be filled by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-i18n="testimonials.title">Testimonials</h2>
+                <p data-i18n="testimonials.description">What colleagues and clients say about working with me</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-card" id="testimonialCard">
+                    <!-- Testimonial will be filled by JavaScript -->
+                </div>
+                <div class="testimonial-nav">
+                    <button id="prevTestimonial"><i class="fas fa-chevron-left"></i></button>
+                    <button id="nextTestimonial"><i class="fas fa-chevron-right"></i></button>
+                </div>
             </div>
         </div>
     </section>
@@ -1288,8 +1684,8 @@
     <section class="competency-section" id="competency">
         <div class="container">
             <div class="section-title">
-                <h2>Competency</h2>
-                <p>Skills and expertise in Statistics, Data Science, and Computer Science</p>
+                <h2 data-i18n="competency.title">Competency</h2>
+                <p data-i18n="competency.description">Skills and expertise in Statistics, Data Science, and Computer Science</p>
             </div>
             <div class="skills-container" id="skillsContainer">
                 <!-- Skill categories will be filled by JavaScript -->
@@ -1301,8 +1697,8 @@
     <section class="collaboration-section" id="collaboration">
         <div class="container">
             <div class="section-title">
-                <h2>Collaboration & Connections</h2>
-                <p>Platforms and tools for professional collaboration</p>
+                <h2 data-i18n="collaboration.title">Collaboration & Connections</h2>
+                <p data-i18n="collaboration.description">Platforms and tools for professional collaboration</p>
             </div>
             <div class="collaboration-container" id="collaborationContainer">
                 <!-- Collaboration items will be filled by JavaScript -->
@@ -1314,30 +1710,30 @@
     <section class="ask-me-section">
         <div class="container">
             <div class="section-title">
-                <h2>Ask Me</h2>
-                <p>Ask questions and get informative answers</p>
+                <h2 data-i18n="ask.title">Ask Me</h2>
+                <p data-i18n="ask.description">Ask questions and get informative answers</p>
             </div>
             <div class="ask-container">
                 <div class="ask-form-container">
                     <div class="ask-form">
                         <div class="form-group">
-                            <label for="question">Your Question</label>
-                            <textarea id="question" rows="6" placeholder="Write your question here..."></textarea>
+                            <label for="question" data-i18n="ask.question_label">Your Question</label>
+                            <textarea id="question" rows="6" data-i18n-placeholder="ask.question_placeholder" placeholder="Write your question here..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email (optional, for answer notifications)</label>
-                            <input type="email" id="email" placeholder="name@email.com">
+                            <label for="email" data-i18n="ask.email_label">Email (optional, for answer notifications)</label>
+                            <input type="email" id="email" data-i18n-placeholder="ask.email_placeholder" placeholder="name@email.com">
                         </div>
-                        <button type="button" class="btn" id="askButton">Ask Question</button>
+                        <button type="button" class="btn" id="askButton" data-i18n="ask.ask_button">Ask Question</button>
                     </div>
                 </div>
                 <div class="ask-response">
                     <div class="response-header">
                         <i class="fas fa-robot"></i>
-                        <h3>Answer</h3>
+                        <h3 data-i18n="ask.answer">Answer</h3>
                     </div>
                     <div class="response-content" id="responseContent">
-                        <p class="response-placeholder">Answer will appear here after you submit a question.</p>
+                        <p class="response-placeholder" data-i18n="ask.answer_placeholder">Answer will appear here after you submit a question.</p>
                     </div>
                 </div>
             </div>
@@ -1348,8 +1744,8 @@
     <section class="photo-session">
         <div class="container">
             <div class="section-title">
-                <h2>Photo Session</h2>
-                <p>Moments in data exploration, coding, and presentations</p>
+                <h2 data-i18n="photos.title">Photo Session</h2>
+                <p data-i18n="photos.description">Moments in data exploration, coding, and presentations</p>
             </div>
             <div class="photo-grid" id="photoGrid">
                 <!-- Photo items will be filled by JavaScript -->
@@ -1368,7 +1764,7 @@
                 <!-- Content will be filled by JavaScript -->
             </div>
             <div class="modal-footer">
-                <a href="#" class="btn" id="modalLink" target="_blank">Visit Link</a>
+                <a href="#" class="btn" id="modalLink" target="_blank" data-i18n="modal.visit_link">Visit Link</a>
             </div>
         </div>
     </div>
@@ -1378,8 +1774,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Ngurah Sentana</h3>
-                    <p>Data Scientist & Computer Science Specialist with an interdisciplinary approach to solving complex problems.</p>
+                    <h3 data-i18n="footer.name">Ngurah Sentana</h3>
+                    <p data-i18n="footer.description">Data Scientist & Computer Science Specialist with an interdisciplinary approach to solving complex problems.</p>
                     <div class="social-links">
                         <a href="https://github.com/NgurahSentana" target="_blank"><i class="fab fa-github"></i></a>
                         <a href="https://linkedin.com/in/ngurahsentana" target="_blank"><i class="fab fa-linkedin-in"></i></a>
@@ -1388,25 +1784,26 @@
                     </div>
                 </div>
                 <div class="footer-column">
-                    <h3>Navigation</h3>
+                    <h3 data-i18n="footer.navigation">Navigation</h3>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#articles">Publications</a></li>
-                        <li><a href="#certificates">Certificates</a></li>
+                        <li><a href="#home" data-i18n="nav.home">Home</a></li>
+                        <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+                        <li><a href="#articles" data-i18n="nav.publications">Publications</a></li>
+                        <li><a href="#certificates" data-i18n="nav.certificates">Certificates</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Portfolio</h3>
+                    <h3 data-i18n="footer.portfolio">Portfolio</h3>
                     <ul class="footer-links">
-                        <li><a href="#experience">Experience</a></li>
-                        <li><a href="#competency">Competency</a></li>
-                        <li><a href="#collaboration">Collaboration</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+                        <li><a href="#awards" data-i18n="nav.awards">Awards</a></li>
+                        <li><a href="#testimonials" data-i18n="nav.testimonials">Testimonials</a></li>
+                        <li><a href="#competency" data-i18n="nav.competency">Competency</a></li>
+                        <li><a href="#collaboration" data-i18n="nav.collaboration">Collaboration</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Contact</h3>
+                    <h3 data-i18n="footer.contact">Contact</h3>
                     <ul class="footer-links">
                         <li><a href="mailto:ngurah.sentana@example.com">ngurah.sentana@example.com</a></li>
                         <li><a href="tel:+621234567890">+62 123 4567 890</a></li>
@@ -1416,13 +1813,192 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; <span id="currentYear">2023</span> Ngurah Sentana. All rights reserved. Created with <i class="fas fa-heart" style="color: #ef4444;"></i> and data.</p>
+                <p>&copy; <span id="currentYear">2023</span> Ngurah Sentana. <span data-i18n="footer.rights">All rights reserved.</span> <span data-i18n="footer.created_with">Created with</span> <i class="fas fa-heart" style="color: #ef4444;"></i> <span data-i18n="footer.and_data">and data.</span></p>
             </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
     <script>
+        // Translation data
+        const translations = {
+            en: {
+                // Navigation
+                "nav.home": "Home",
+                "nav.projects": "Projects",
+                "nav.publications": "Publications",
+                "nav.certificates": "Certificates",
+                "nav.experience": "Experience",
+                "nav.awards": "Awards",
+                "nav.testimonials": "Testimonials",
+                "nav.competency": "Competency",
+                "nav.collaboration": "Collaboration",
+                "nav.download_cv": "Download CV",
+                
+                // Hero Section
+                "hero.title": "Ngurah Sentana",
+                "hero.description": "Data Scientist & Computer Science Specialist with expertise in Statistics, Machine Learning, and Software Development. Creating elegant and functional data-driven solutions.",
+                "hero.view_projects": "View Projects",
+                "hero.contact_me": "Contact Me",
+                
+                // Sections
+                "projects.title": "Projects",
+                "projects.description": "Data science and software development projects showcasing practical applications",
+                "articles.title": "Publications",
+                "articles.description": "Research papers and articles published in scientific journals",
+                "certificates.title": "Certificates",
+                "certificates.description": "Professional certifications and completed courses",
+                "experience.title": "Experience",
+                "experience.description": "Professional journey and work experience",
+                "awards.title": "Awards & Recognitions",
+                "awards.description": "Achievements, awards, and speaking engagements",
+                "testimonials.title": "Testimonials",
+                "testimonials.description": "What colleagues and clients say about working with me",
+                "competency.title": "Competency",
+                "competency.description": "Skills and expertise in Statistics, Data Science, and Computer Science",
+                "collaboration.title": "Collaboration & Connections",
+                "collaboration.description": "Platforms and tools for professional collaboration",
+                "photos.title": "Photo Session",
+                "photos.description": "Moments in data exploration, coding, and presentations",
+                
+                // Ask Section
+                "ask.title": "Ask Me",
+                "ask.description": "Ask questions and get informative answers",
+                "ask.question_label": "Your Question",
+                "ask.question_placeholder": "Write your question here...",
+                "ask.email_label": "Email (optional, for answer notifications)",
+                "ask.email_placeholder": "name@email.com",
+                "ask.ask_button": "Ask Question",
+                "ask.answer": "Answer",
+                "ask.answer_placeholder": "Answer will appear here after you submit a question.",
+                
+                // Footer
+                "footer.name": "Ngurah Sentana",
+                "footer.description": "Data Scientist & Computer Science Specialist with an interdisciplinary approach to solving complex problems.",
+                "footer.navigation": "Navigation",
+                "footer.portfolio": "Portfolio",
+                "footer.contact": "Contact",
+                "footer.rights": "All rights reserved.",
+                "footer.created_with": "Created with",
+                "footer.and_data": "and data.",
+                
+                // Modal
+                "modal.visit_link": "Visit Link",
+                
+                // Stats
+                "stats.projects": "Projects Completed",
+                "stats.publications": "Publications",
+                "stats.certificates": "Certificates",
+                "stats.experience": "Years Experience",
+                "stats.awards": "Awards",
+                "stats.clients": "Happy Clients"
+            },
+            id: {
+                // Navigation
+                "nav.home": "Beranda",
+                "nav.projects": "Proyek",
+                "nav.publications": "Publikasi",
+                "nav.certificates": "Sertifikat",
+                "nav.experience": "Pengalaman",
+                "nav.awards": "Penghargaan",
+                "nav.testimonials": "Testimoni",
+                "nav.competency": "Kompetensi",
+                "nav.collaboration": "Kolaborasi",
+                "nav.download_cv": "Unduh CV",
+                
+                // Hero Section
+                "hero.title": "Ngurah Sentana",
+                "hero.description": "Spesialis Data Scientist & Computer Science dengan keahlian dalam Statistika, Machine Learning, dan Pengembangan Perangkat Lunak. Menciptakan solusi berbasis data yang elegan dan fungsional.",
+                "hero.view_projects": "Lihat Proyek",
+                "hero.contact_me": "Hubungi Saya",
+                
+                // Sections
+                "projects.title": "Proyek",
+                "projects.description": "Proyek data science dan pengembangan perangkat lunak yang menunjukkan aplikasi praktis",
+                "articles.title": "Publikasi",
+                "articles.description": "Makalah penelitian dan artikel yang diterbitkan di jurnal ilmiah",
+                "certificates.title": "Sertifikat",
+                "certificates.description": "Sertifikasi profesional dan kursus yang diselesaikan",
+                "experience.title": "Pengalaman",
+                "experience.description": "Perjalanan profesional dan pengalaman kerja",
+                "awards.title": "Penghargaan & Pengakuan",
+                "awards.description": "Pencapaian, penghargaan, dan keterlibatan sebagai pembicara",
+                "testimonials.title": "Testimoni",
+                "testimonials.description": "Apa kata rekan dan klien tentang bekerja dengan saya",
+                "competency.title": "Kompetensi",
+                "competency.description": "Keterampilan dan keahlian dalam Statistika, Data Science, dan Computer Science",
+                "collaboration.title": "Kolaborasi & Koneksi",
+                "collaboration.description": "Platform dan alat untuk kolaborasi profesional",
+                "photos.title": "Sesi Foto",
+                "photos.description": "Momen dalam eksplorasi data, coding, dan presentasi",
+                
+                // Ask Section
+                "ask.title": "Tanyakan Saya",
+                "ask.description": "Ajukan pertanyaan dan dapatkan jawaban yang informatif",
+                "ask.question_label": "Pertanyaan Anda",
+                "ask.question_placeholder": "Tulis pertanyaan Anda di sini...",
+                "ask.email_label": "Email (opsional, untuk notifikasi jawaban)",
+                "ask.email_placeholder": "nama@email.com",
+                "ask.ask_button": "Ajukan Pertanyaan",
+                "ask.answer": "Jawaban",
+                "ask.answer_placeholder": "Jawaban akan muncul di sini setelah Anda mengajukan pertanyaan.",
+                
+                // Footer
+                "footer.name": "Ngurah Sentana",
+                "footer.description": "Spesialis Data Scientist & Computer Science dengan pendekatan interdisipliner untuk menyelesaikan masalah kompleks.",
+                "footer.navigation": "Navigasi",
+                "footer.portfolio": "Portofolio",
+                "footer.contact": "Kontak",
+                "footer.rights": "Semua hak dilindungi.",
+                "footer.created_with": "Dibuat dengan",
+                "footer.and_data": "dan data.",
+                
+                // Modal
+                "modal.visit_link": "Kunjungi Tautan",
+                
+                // Stats
+                "stats.projects": "Proyek Selesai",
+                "stats.publications": "Publikasi",
+                "stats.certificates": "Sertifikat",
+                "stats.experience": "Tahun Pengalaman",
+                "stats.awards": "Penghargaan",
+                "stats.clients": "Klien Puas"
+            }
+        };
+
+        // Current language
+        let currentLang = 'en';
+
+        // Function to translate the page
+        function translatePage(lang) {
+            currentLang = lang;
+            
+            // Update all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (translations[lang] && translations[lang][key]) {
+                    element.placeholder = translations[lang][key];
+                }
+            });
+            
+            // Update active language button
+            document.querySelectorAll('.language-switcher button').forEach(btn => {
+                if (btn.id === `lang${lang.toUpperCase()}`) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
         // Data for portfolio
         const portfolioData = {
             projects: [
@@ -1610,6 +2186,59 @@
                     technologies: ["Python", "R", "Tableau", "SQL", "Scikit-learn"]
                 }
             ],
+            awards: [
+                {
+                    id: 1,
+                    title: "Best Data Science Project Award",
+                    organization: "Data Science Association",
+                    date: "2023",
+                    description: "Awarded for innovative use of machine learning in financial market prediction."
+                },
+                {
+                    id: 2,
+                    title: "Speaker at International AI Conference",
+                    organization: "AI Summit 2023",
+                    date: "2023",
+                    description: "Invited speaker on 'Ethical AI Implementation in Healthcare'."
+                },
+                {
+                    id: 3,
+                    title: "Research Excellence Award",
+                    organization: "University of Technology",
+                    date: "2022",
+                    description: "Recognized for outstanding research contributions in computer vision."
+                },
+                {
+                    id: 4,
+                    title: "Top Performer - Data Science Competition",
+                    organization: "Kaggle",
+                    date: "2021",
+                    description: "Top 10% finish in global data science competition with 10,000+ participants."
+                }
+            ],
+            testimonials: [
+                {
+                    id: 1,
+                    text: "Ngurah's expertise in data science transformed our analytics capabilities. His machine learning models improved our prediction accuracy by 35%.",
+                    author: "Sarah Johnson",
+                    role: "CTO at TechCorp",
+                    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                },
+                {
+                    id: 2,
+                    text: "Working with Ngurah was a game-changer for our research. His statistical insights and technical skills are exceptional.",
+                    author: "Dr. Michael Chen",
+                    role: "Research Director at University AI Lab",
+                    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                },
+                {
+                    id: 3,
+                    text: "The data visualization dashboard Ngurah created for us revolutionized how we analyze complex datasets. Highly recommended!",
+                    author: "Emma Wilson",
+                    role: "Product Manager at DataTech",
+                    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                }
+            ],
             skills: {
                 statistics: [
                     { name: "Statistical Analysis", percentage: 90 },
@@ -1652,6 +2281,44 @@
                 { url: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80", alt: "Conference" }
             ]
         };
+
+        // Calculate statistics
+        function calculateStats() {
+            const now = new Date();
+            const startYear = 2019;
+            const yearsExperience = now.getFullYear() - startYear;
+            const currentQuarter = Math.floor((now.getMonth() + 3) / 3);
+            const currentMonth = now.getMonth() + 1;
+            
+            return {
+                projects: portfolioData.projects.filter(p => p.status === 'completed').length,
+                publications: portfolioData.articles.length,
+                certificates: portfolioData.certificates.length,
+                experience: yearsExperience,
+                awards: portfolioData.awards.length,
+                clients: portfolioData.testimonials.length,
+                currentYear: now.getFullYear(),
+                currentQuarter: currentQuarter,
+                currentMonth: currentMonth
+            };
+        }
+
+        // Create stat card
+        function createStatCard(stat, label, icon, trend = null) {
+            const stats = calculateStats();
+            const value = stats[stat];
+            
+            return `
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="${icon}"></i>
+                    </div>
+                    <div class="stat-number">${value}</div>
+                    <div class="stat-label">${label}</div>
+                    ${trend ? `<span class="stat-trend ${trend > 0 ? '' : 'down'}">${trend > 0 ? '↑' : '↓'} ${Math.abs(trend)}%</span>` : ''}
+                </div>
+            `;
+        }
 
         // Function to create project card
         function createProjectCard(project) {
@@ -1721,6 +2388,44 @@
             `;
         }
 
+        // Function to create award card
+        function createAwardCard(award) {
+            return `
+                <div class="award-card" data-id="${award.id}" data-type="award">
+                    <div class="award-header">
+                        <div class="award-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div>
+                            <h3>${award.title}</h3>
+                            <p><strong>${award.organization}</strong> - ${award.date}</p>
+                        </div>
+                    </div>
+                    <div class="award-content">
+                        <p>${award.description}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to create testimonial card
+        function createTestimonialCard(testimonial) {
+            return `
+                <div class="testimonial-card" data-id="${testimonial.id}">
+                    <div class="testimonial-text">
+                        ${testimonial.text}
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="${testimonial.avatar}" alt="${testimonial.author}" class="author-avatar">
+                        <div class="author-info">
+                            <h4>${testimonial.author}</h4>
+                            <p>${testimonial.role}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
         // Function to create skill category
         function createSkillCategory(categoryName, skills) {
             const icons = {
@@ -1770,6 +2475,19 @@
 
         // Render all elements
         function renderPortfolio() {
+            const stats = calculateStats();
+            
+            // Render stats
+            const statsContainer = document.getElementById('statsContainer');
+            statsContainer.innerHTML = `
+                ${createStatCard('projects', currentLang === 'en' ? 'Projects Completed' : 'Proyek Selesai', 'fas fa-project-diagram', 15)}
+                ${createStatCard('publications', currentLang === 'en' ? 'Publications' : 'Publikasi', 'fas fa-book', 25)}
+                ${createStatCard('certificates', currentLang === 'en' ? 'Certificates' : 'Sertifikat', 'fas fa-award', 10)}
+                ${createStatCard('experience', currentLang === 'en' ? 'Years Experience' : 'Tahun Pengalaman', 'fas fa-briefcase')}
+                ${createStatCard('awards', currentLang === 'en' ? 'Awards' : 'Penghargaan', 'fas fa-trophy', 20)}
+                ${createStatCard('clients', currentLang === 'en' ? 'Happy Clients' : 'Klien Puas', 'fas fa-users', 30)}
+            `;
+            
             // Render projects
             const projectsGrid = document.getElementById('projectsGrid');
             projectsGrid.innerHTML = portfolioData.projects.map(createProjectCard).join('');
@@ -1786,6 +2504,14 @@
             const experienceGrid = document.getElementById('experienceGrid');
             experienceGrid.innerHTML = portfolioData.experiences.map(createExperienceCard).join('');
             
+            // Render awards
+            const awardsGrid = document.getElementById('awardsGrid');
+            awardsGrid.innerHTML = portfolioData.awards.map(createAwardCard).join('');
+            
+            // Render testimonials
+            const testimonialCard = document.getElementById('testimonialCard');
+            testimonialCard.innerHTML = createTestimonialCard(portfolioData.testimonials[0]);
+            
             // Render skills
             const skillsContainer = document.getElementById('skillsContainer');
             skillsContainer.innerHTML = `
@@ -1801,6 +2527,18 @@
             // Render photos
             const photoGrid = document.getElementById('photoGrid');
             photoGrid.innerHTML = portfolioData.photos.map(createPhotoItem).join('');
+        }
+
+        // Visitor counter
+        function updateVisitorCounter() {
+            let count = localStorage.getItem('visitorCount');
+            if (!count) {
+                count = 1;
+            } else {
+                count = parseInt(count) + 1;
+            }
+            localStorage.setItem('visitorCount', count);
+            document.getElementById('visitorCount').textContent = count.toLocaleString();
         }
 
         // Modal functions
@@ -1868,6 +2606,16 @@
                     linkText = 'Learn More';
                     linkUrl = '#';
                     break;
+                    
+                case 'award':
+                    content = `
+                        <p><strong>Organization:</strong> ${item.organization}</p>
+                        <p><strong>Date:</strong> ${item.date}</p>
+                        <p><strong>Description:</strong> ${item.description}</p>
+                    `;
+                    linkText = 'Learn More';
+                    linkUrl = '#';
+                    break;
             }
             
             modalContent.innerHTML = content;
@@ -1882,6 +2630,15 @@
             const modalOverlay = document.getElementById('modalOverlay');
             modalOverlay.classList.remove('active');
             document.body.style.overflow = 'auto';
+        }
+
+        // Testimonial navigation
+        let currentTestimonial = 0;
+        
+        function updateTestimonial() {
+            const testimonialCard = document.getElementById('testimonialCard');
+            testimonialCard.innerHTML = createTestimonialCard(portfolioData.testimonials[currentTestimonial]);
+            testimonialCard.classList.add('visible');
         }
 
         // Ask me functionality
@@ -1946,13 +2703,26 @@
             }, observerOptions);
             
             // Observe elements for animation
-            document.querySelectorAll('.project-card, .article-card, .certificate-card, .experience-card, .skill-category, .collaboration-item, .photo-item').forEach(el => {
+            document.querySelectorAll('section, .project-card, .article-card, .certificate-card, .experience-card, .award-card, .skill-category, .collaboration-item, .photo-item').forEach(el => {
                 observer.observe(el);
             });
         }
 
+        // Page transition
+        function animatePageTransition() {
+            const pageTransition = document.getElementById('pageTransition');
+            pageTransition.classList.add('active');
+            
+            setTimeout(() => {
+                pageTransition.classList.remove('active');
+            }, 600);
+        }
+
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
+            // Update visitor counter
+            updateVisitorCounter();
+            
             // Render portfolio
             renderPortfolio();
             
@@ -1985,6 +2755,36 @@
                 } else {
                     header.style.boxShadow = "none";
                 }
+            });
+            
+            // Language switcher
+            document.getElementById('langEN').addEventListener('click', () => {
+                if (currentLang !== 'en') {
+                    animatePageTransition();
+                    setTimeout(() => {
+                        translatePage('en');
+                    }, 300);
+                }
+            });
+            
+            document.getElementById('langID').addEventListener('click', () => {
+                if (currentLang !== 'id') {
+                    animatePageTransition();
+                    setTimeout(() => {
+                        translatePage('id');
+                    }, 300);
+                }
+            });
+            
+            // Testimonial navigation
+            document.getElementById('prevTestimonial').addEventListener('click', () => {
+                currentTestimonial = (currentTestimonial - 1 + portfolioData.testimonials.length) % portfolioData.testimonials.length;
+                updateTestimonial();
+            });
+            
+            document.getElementById('nextTestimonial').addEventListener('click', () => {
+                currentTestimonial = (currentTestimonial + 1) % portfolioData.testimonials.length;
+                updateTestimonial();
             });
             
             // Modal functionality
@@ -2022,6 +2822,15 @@
                     const id = parseInt(card.dataset.id);
                     const type = card.dataset.type;
                     const item = portfolioData.experiences.find(e => e.id === id);
+                    if (item) openModal(item, type);
+                }
+                
+                // Award cards
+                if (e.target.closest('.award-card')) {
+                    const card = e.target.closest('.award-card');
+                    const id = parseInt(card.dataset.id);
+                    const type = card.dataset.type;
+                    const item = portfolioData.awards.find(a => a.id === id);
                     if (item) openModal(item, type);
                 }
                 
@@ -2067,16 +2876,22 @@
                     
                     const targetElement = document.querySelector(targetId);
                     if(targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
+                        animatePageTransition();
+                        setTimeout(() => {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }, 300);
                     }
                 });
             });
             
             // Set current year in footer
             document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Initialize testimonial
+            updateTestimonial();
         });
     </script>
 </body>
