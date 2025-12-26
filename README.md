@@ -47,6 +47,30 @@
             min-height: 100vh;
             overflow-x: hidden;
             transition: background-color 0.3s ease;
+            cursor: default;
+        }
+
+        /* Custom Cursor */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.2s ease-out;
         }
 
         h1, h2, h3, h4 {
@@ -68,7 +92,7 @@
             padding: 0 15px;
         }
 
-        /* Header & Navigation Minimalis */
+        /* Header & Navigation */
         header {
             position: fixed;
             top: 0;
@@ -80,6 +104,11 @@
             transition: var(--transition);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             padding: 12px 0;
+            transform: translateY(0);
+        }
+
+        header.hidden {
+            transform: translateY(-100%);
         }
 
         nav {
@@ -346,6 +375,8 @@
             box-shadow: var(--shadow);
             border: 1px solid var(--medium-gray);
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
 
         .stat-card:hover {
@@ -374,6 +405,22 @@
             font-weight: 500;
         }
 
+        .stat-trend {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 12px;
+            background: var(--success-color);
+            color: white;
+        }
+
+        .stat-trend.negative {
+            background: var(--danger-color);
+        }
+
         /* Section Container with Slider */
         .section-container {
             position: relative;
@@ -384,14 +431,14 @@
             display: flex;
             overflow-x: auto;
             scroll-behavior: smooth;
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none;
             padding: 20px 5px 40px;
             gap: 20px;
             margin: 0 -5px;
         }
 
         .section-content::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Edge */
+            display: none;
         }
 
         .section-slider-nav {
@@ -438,6 +485,7 @@
             cursor: pointer;
             opacity: 0;
             transform: translateY(20px);
+            position: relative;
         }
 
         .project-card.visible, .article-card.visible, .certificate-card.visible, 
@@ -578,31 +626,6 @@
             color: var(--accent-color);
         }
 
-        /* Experience Cards in Modal */
-        .modal-experience-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .modal-experience-card {
-            background: var(--light-gray);
-            border-radius: var(--border-radius);
-            padding: 15px;
-            border-left: 4px solid var(--accent-color);
-        }
-
-        .modal-experience-card h4 {
-            margin-bottom: 8px;
-            font-size: 1rem;
-        }
-
-        .modal-experience-card p {
-            font-size: 0.9rem;
-            margin-bottom: 0;
-        }
-
         /* Organizations */
         .organization-icon {
             padding: 25px 25px 15px;
@@ -615,19 +638,168 @@
             color: var(--accent-color);
         }
 
+        /* Modal Popup */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            width: 90%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            transform: translateY(40px);
+            transition: transform 0.4s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 25px 25px 20px;
+            border-bottom: 1px solid var(--medium-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+            transition: var(--transition);
+            padding: 5px;
+        }
+
+        .modal-close:hover {
+            color: var(--danger-color);
+        }
+
+        .modal-content {
+            padding: 25px;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+        }
+
+        /* Modal Slider for Experience and Organizations */
+        .modal-slider {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .modal-slider-content {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            gap: 15px;
+            padding: 10px 0;
+        }
+
+        .modal-slider-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .modal-slider-card {
+            flex: 0 0 280px;
+            background: var(--light-gray);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .modal-slider-card h4 {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .modal-slider-card p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .modal-slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .modal-slider-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid var(--accent-color);
+            background: white;
+            color: var(--accent-color);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-slider-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .modal-footer {
+            padding: 20px 25px;
+            border-top: 1px solid var(--medium-gray);
+            text-align: right;
+        }
+
         /* Testimonials */
+        .testimonials-slider {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         .testimonial-card {
             background: white;
             border-radius: var(--border-radius);
-            padding: 30px;
+            padding: 40px;
             box-shadow: var(--shadow);
             border: 1px solid var(--medium-gray);
             text-align: center;
             position: relative;
-            max-width: 800px;
-            margin: 0 auto;
             opacity: 0;
             transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         .testimonial-card.visible {
@@ -636,22 +808,33 @@
         }
 
         .testimonial-text {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-style: italic;
             color: #475569;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             position: relative;
-            padding: 0 20px;
+            padding: 0 30px;
+            line-height: 1.6;
         }
 
-        .testimonial-text::before {
+        .testimonial-text::before,
+        .testimonial-text::after {
             content: '"';
             font-size: 4rem;
             color: var(--accent-color);
             opacity: 0.2;
             position: absolute;
-            top: -30px;
-            left: -10px;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-text::before {
+            top: -20px;
+            left: 0;
+        }
+
+        .testimonial-text::after {
+            bottom: -40px;
+            right: 0;
         }
 
         .testimonial-author {
@@ -659,45 +842,60 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
+            margin-top: 20px;
         }
 
         .author-avatar {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--accent-color);
             padding: 2px;
+            background: white;
+        }
+
+        .author-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            border: 3px solid var(--accent-color);
         }
 
         .author-info h4 {
             margin-bottom: 5px;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
         .author-info p {
             color: var(--dark-gray);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             margin-bottom: 0;
         }
 
         .testimonial-nav {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-top: 25px;
+            gap: 15px;
+            margin-top: 30px;
         }
 
         .testimonial-dots {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             justify-content: center;
             margin-top: 20px;
         }
 
         .testimonial-dot {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background: var(--medium-gray);
             cursor: pointer;
@@ -816,86 +1014,6 @@
             box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
         }
 
-        /* Modal Popup */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal {
-            background: white;
-            border-radius: var(--border-radius-lg);
-            width: 90%;
-            max-width: 700px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            transform: translateY(40px);
-            transition: transform 0.4s ease;
-        }
-
-        .modal-overlay.active .modal {
-            transform: translateY(0);
-        }
-
-        .modal-header {
-            padding: 25px 25px 20px;
-            border-bottom: 1px solid var(--medium-gray);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--dark-gray);
-            transition: var(--transition);
-            padding: 5px;
-        }
-
-        .modal-close:hover {
-            color: var(--danger-color);
-        }
-
-        .modal-content {
-            padding: 25px;
-        }
-
-        .modal-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: var(--border-radius);
-            margin-bottom: 20px;
-        }
-
-        .modal-footer {
-            padding: 20px 25px;
-            border-top: 1px solid var(--medium-gray);
-            text-align: right;
-        }
-
         /* Footer */
         footer {
             background: var(--secondary-color);
@@ -972,6 +1090,14 @@
         section {
             padding: 80px 0;
             position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-title {
@@ -1006,6 +1132,108 @@
             margin: 1rem auto 0;
         }
 
+        /* Visitor Counter */
+        .visitor-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .visitor-counter:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .visitor-counter i {
+            font-size: 1.2rem;
+        }
+
+        /* Competency Section */
+        .competency-section {
+            background-color: var(--light-gray);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--medium-gray);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .skill-category.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-category h3 {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-category h3 i {
+            margin-right: 15px;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .skill-percentage {
+            font-weight: 600;
+            color: var(--accent-color);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: var(--light-gray);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+            border-radius: 4px;
+            width: 0;
+            transition: width 1.5s ease;
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -1023,8 +1251,28 @@
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-10px);
+                transform: translateY(-15px);
             }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: var(--shadow);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: var(--shadow-lg);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: var(--shadow);
+            }
+        }
+
+        @keyframes progressAnimation {
+            from { width: 0; }
+            to { width: var(--target-width); }
         }
 
         /* Responsive Design */
@@ -1051,6 +1299,11 @@
             .profile-img {
                 width: 280px;
                 height: 350px;
+            }
+
+            .cursor-dot,
+            .cursor-outline {
+                display: none;
             }
         }
 
@@ -1114,6 +1367,13 @@
             .header-cv i {
                 margin-right: 0;
             }
+
+            .visitor-counter {
+                bottom: 10px;
+                right: 10px;
+                font-size: 0.8rem;
+                padding: 10px 16px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1142,6 +1402,16 @@
             .experience-card, .award-card, .organization-card {
                 flex: 0 0 280px;
             }
+
+            .testimonial-text {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
+
+            .testimonial-text::before,
+            .testimonial-text::after {
+                font-size: 3rem;
+            }
         }
 
         /* Utility Classes */
@@ -1151,6 +1421,10 @@
 
         .float-animation {
             animation: float 5s ease-in-out infinite;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
         }
 
         /* Page Transition */
@@ -1172,6 +1446,10 @@
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-outline" id="cursorOutline"></div>
+
     <!-- Page Transition Overlay -->
     <div class="page-transition" id="pageTransition"></div>
 
@@ -1191,6 +1469,8 @@
                     <li><a href="#organizations" data-i18n="nav.organizations">Organizations</a></li>
                     <li><a href="#certificates" data-i18n="nav.certificates">Certificates</a></li>
                     <li><a href="#awards" data-i18n="nav.awards">Awards</a></li>
+                    <li><a href="#competency" data-i18n="nav.competency">Competency</a></li>
+                    <li><a href="#testimonials" data-i18n="nav.testimonials">Testimonials</a></li>
                 </ul>
                 <div class="header-right">
                     <div class="language-switcher">
@@ -1205,6 +1485,12 @@
             </nav>
         </div>
     </header>
+
+    <!-- Visitor Counter -->
+    <div class="visitor-counter" id="visitorCounter">
+        <i class="fas fa-eye"></i>
+        <span id="visitorCount">0</span> visitors
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -1374,6 +1660,19 @@
         </div>
     </section>
 
+    <!-- Competency Section -->
+    <section class="competency-section" id="competency">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-i18n="competency.title">Competency</h2>
+                <p data-i18n="competency.description">Skills and expertise in Statistics, Data Science, and Computer Science</p>
+            </div>
+            <div class="skills-container" id="skillsContainer">
+                <!-- Skills will be filled by JavaScript -->
+            </div>
+        </div>
+    </section>
+
     <!-- Testimonials Section -->
     <section class="testimonials-section" id="testimonials">
         <div class="container">
@@ -1511,6 +1810,7 @@
                 "nav.organizations": "Organizations",
                 "nav.certificates": "Certificates",
                 "nav.awards": "Awards",
+                "nav.competency": "Competency",
                 "nav.testimonials": "Testimonials",
                 
                 // Hero Section
@@ -1532,6 +1832,8 @@
                 "certificates.description": "Professional certifications",
                 "awards.title": "Awards",
                 "awards.description": "Achievements and recognitions",
+                "competency.title": "Competency",
+                "competency.description": "Skills and expertise in Statistics, Data Science, and Computer Science",
                 "testimonials.title": "Testimonials",
                 "testimonials.description": "What colleagues and clients say",
                 
@@ -1568,6 +1870,7 @@
                 "nav.organizations": "Organisasi",
                 "nav.certificates": "Sertifikat",
                 "nav.awards": "Penghargaan",
+                "nav.competency": "Kompetensi",
                 "nav.testimonials": "Testimoni",
                 
                 // Hero Section
@@ -1589,6 +1892,8 @@
                 "certificates.description": "Sertifikasi profesional",
                 "awards.title": "Penghargaan",
                 "awards.description": "Pencapaian dan pengakuan",
+                "competency.title": "Kompetensi",
+                "competency.description": "Keterampilan dan keahlian dalam Statistika, Data Science, dan Computer Science",
                 "testimonials.title": "Testimoni",
                 "testimonials.description": "Apa kata rekan dan klien",
                 
@@ -1632,8 +1937,8 @@
                     tags: ["Python", "TensorFlow", "LSTM", "Finance"],
                     link: "https://github.com/NgurahSentana/stock-prediction",
                     status: "completed",
-                    detailedDescription: "This project implements a sophisticated LSTM neural network for predicting stock market trends. The model processes real-time financial data with 87% accuracy.",
-                    technologies: ["Python 3.9", "TensorFlow 2.8", "Keras", "Pandas", "NumPy"],
+                    detailedDescription: "This project implements a sophisticated LSTM neural network for predicting stock market trends. The model processes real-time financial data with 87% accuracy. Features include real-time data processing, automated retraining, and comprehensive backtesting.",
+                    technologies: ["Python 3.9", "TensorFlow 2.8", "Keras", "Pandas", "NumPy", "Scikit-learn"],
                     date: "2023"
                 },
                 {
@@ -1644,8 +1949,8 @@
                     tags: ["NLP", "Python", "Transformers", "FastAPI"],
                     link: "https://github.com/NgurahSentana/sentiment-analysis",
                     status: "ongoing",
-                    detailedDescription: "Real-time sentiment analysis system that processes social media data streams using BERT-based transformer models.",
-                    technologies: ["PyTorch", "Transformers", "FastAPI", "Docker"],
+                    detailedDescription: "Real-time sentiment analysis system that processes social media data streams using BERT-based transformer models. Supports multiple languages and provides real-time dashboards for sentiment tracking.",
+                    technologies: ["PyTorch", "Transformers", "FastAPI", "Docker", "Redis", "MongoDB"],
                     date: "2023"
                 },
                 {
@@ -1656,8 +1961,8 @@
                     tags: ["JavaScript", "Three.js", "D3.js", "WebGL"],
                     link: "https://github.com/NgurahSentana/3d-data-viz",
                     status: "completed",
-                    detailedDescription: "Interactive 3D visualization platform for exploring complex multi-dimensional datasets.",
-                    technologies: ["React", "Three.js", "D3.js", "WebGL"],
+                    detailedDescription: "Interactive 3D visualization platform for exploring complex multi-dimensional datasets. Users can rotate, zoom, filter, and interact with data points in real-time.",
+                    technologies: ["React", "Three.js", "D3.js", "WebGL", "Node.js", "Express"],
                     date: "2023"
                 },
                 {
@@ -1668,21 +1973,9 @@
                     tags: ["Healthcare", "Machine Learning", "Python", "Flask"],
                     link: "https://github.com/NgurahSentana/healthcare-analytics",
                     status: "completed",
-                    detailedDescription: "Comprehensive healthcare analytics platform that processes patient data to predict outcomes.",
-                    technologies: ["Python", "Flask", "SQL", "XGBoost"],
+                    detailedDescription: "Comprehensive healthcare analytics platform that processes patient data to predict outcomes and suggest interventions. Implements privacy-preserving techniques for sensitive medical data.",
+                    technologies: ["Python", "Flask", "SQL", "XGBoost", "Scikit-learn", "HIPAA Compliance"],
                     date: "2022"
-                },
-                {
-                    id: 5,
-                    title: "E-commerce Recommendation Engine",
-                    description: "Personalized product recommendation system using collaborative filtering.",
-                    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                    tags: ["Recommendation", "Machine Learning", "Python", "Spark"],
-                    link: "https://github.com/NgurahSentana/recommendation-engine",
-                    status: "ongoing",
-                    detailedDescription: "Scalable recommendation engine that processes user behavior data for personalized suggestions.",
-                    technologies: ["Apache Spark", "Python", "AWS", "Docker"],
-                    date: "2023"
                 }
             ],
             articles: [
@@ -1695,7 +1988,8 @@
                     date: "March 2023",
                     doi: "https://doi.org/10.1234/jds.2023.001",
                     abstract: "This paper presents a novel Bayesian approach to A/B testing that reduces required sample sizes by 40% while maintaining statistical power.",
-                    keywords: ["Bayesian Statistics", "A/B Testing", "Experimental Design"]
+                    keywords: ["Bayesian Statistics", "A/B Testing", "Experimental Design"],
+                    detailedDescription: "In-depth research on Bayesian statistical methods applied to A/B testing scenarios, showing significant improvements over traditional frequentist approaches."
                 },
                 {
                     id: 2,
@@ -1706,18 +2000,8 @@
                     date: "January 2023",
                     doi: "https://doi.org/10.5678/ijcs.2023.002",
                     abstract: "This research explores optimization techniques for processing massive datasets efficiently.",
-                    keywords: ["Big Data", "Algorithm Optimization", "Distributed Computing"]
-                },
-                {
-                    id: 3,
-                    title: "Modern Data Pipeline Architecture",
-                    description: "Building scalable and maintainable data pipelines.",
-                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                    journal: "Data Engineering Review",
-                    date: "Expected June 2024",
-                    doi: "#",
-                    abstract: "This research focuses on modern architectures for data pipelines that balance scalability and maintainability.",
-                    keywords: ["Data Engineering", "Pipeline Architecture", "Scalability"]
+                    keywords: ["Big Data", "Algorithm Optimization", "Distributed Computing"],
+                    detailedDescription: "Comprehensive study of algorithm optimization techniques for big data processing, including parallel processing and distributed computing approaches."
                 }
             ],
             experiences: [
@@ -1727,11 +2011,15 @@
                     company: "TechCorp",
                     period: "2022 - Present",
                     description: "Leading data science team for predictive model development and AI solutions.",
-                    responsibilities: [
-                        "Led a team of 5 data scientists",
-                        "Implemented machine learning pipelines",
-                        "Improved prediction accuracy by 25%",
-                        "Mentored junior data scientists"
+                    achievements: [
+                        "Led development of machine learning pipeline reducing processing time by 60%",
+                        "Implemented automated model monitoring system improving accuracy by 25%",
+                        "Mentored team of 5 junior data scientists",
+                        "Reduced infrastructure costs by 40% through optimization"
+                    ],
+                    images: [
+                        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
                     ]
                 },
                 {
@@ -1740,24 +2028,14 @@
                     company: "University AI Lab",
                     period: "2020 - 2022",
                     description: "Research assistant focusing on computer vision and deep learning.",
-                    responsibilities: [
-                        "Conducted research on object detection",
-                        "Published 3 papers in journals",
-                        "Developed medical image analysis",
-                        "Collaborated with PhD students"
-                    ]
-                },
-                {
-                    id: 3,
-                    title: "Data Science Intern",
-                    company: "DataTech Solutions",
-                    period: "2019 - 2020",
-                    description: "Internship focusing on data analysis and visualization projects.",
-                    responsibilities: [
-                        "Developed analytics dashboard",
-                        "Processed large datasets",
-                        "Created predictive models",
-                        "Presented findings to management"
+                    achievements: [
+                        "Published 3 papers in top-tier journals",
+                        "Developed novel object detection algorithm with 95% accuracy",
+                        "Collaborated with international research teams",
+                        "Presented findings at 5 international conferences"
+                    ],
+                    images: [
+                        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
                     ]
                 }
             ],
@@ -1769,9 +2047,13 @@
                     period: "2021 - Present",
                     description: "Professional organization for data scientists and analysts.",
                     activities: [
-                        "Participated in monthly workshops",
-                        "Contributed to community projects",
-                        "Attended annual conferences"
+                        "Organized monthly workshops for 100+ members",
+                        "Led community project improving local business analytics",
+                        "Presented at annual conference 2022",
+                        "Mentored 15 junior data scientists"
+                    ],
+                    images: [
+                        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
                     ]
                 },
                 {
@@ -1781,21 +2063,13 @@
                     period: "2020 - Present",
                     description: "Community of AI researchers and practitioners.",
                     activities: [
-                        "Published research papers",
-                        "Reviewed peer submissions",
-                        "Organized study groups"
-                    ]
-                },
-                {
-                    id: 3,
-                    title: "Open Source Contributors",
-                    role: "Contributor",
-                    period: "2019 - Present",
-                    description: "Community of open source software contributors.",
-                    activities: [
-                        "Contributed to Python libraries",
-                        "Maintained documentation",
-                        "Answered community questions"
+                        "Contributed to open-source AI projects",
+                        "Reviewed 50+ research papers",
+                        "Organized study groups on advanced ML topics",
+                        "Collaborated on international research projects"
+                    ],
+                    images: [
+                        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
                     ]
                 }
             ],
@@ -1806,7 +2080,8 @@
                     description: "Professional data analytics certification from Google.",
                     issuer: "Google via Coursera",
                     date: "December 2022",
-                    link: "https://coursera.org/certificates/data-analytics"
+                    link: "https://coursera.org/certificates/data-analytics",
+                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
                 },
                 {
                     id: 2,
@@ -1814,23 +2089,8 @@
                     description: "AWS specialist certification in machine learning.",
                     issuer: "Amazon Web Services",
                     date: "October 2022",
-                    link: "https://aws.amazon.com/certification/"
-                },
-                {
-                    id: 3,
-                    title: "Deep Learning Specialization",
-                    description: "Deep learning specialization certificate.",
-                    issuer: "deeplearning.ai",
-                    date: "August 2022",
-                    link: "https://coursera.org/specializations/deep-learning"
-                },
-                {
-                    id: 4,
-                    title: "TensorFlow Developer",
-                    description: "TensorFlow developer certification.",
-                    issuer: "TensorFlow",
-                    date: "June 2022",
-                    link: "https://www.tensorflow.org/certificate"
+                    link: "https://aws.amazon.com/certification/",
+                    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
                 }
             ],
             awards: [
@@ -1839,80 +2099,117 @@
                     title: "Best Data Science Project",
                     organization: "Data Science Association",
                     date: "2023",
-                    description: "Awarded for innovative use of machine learning in financial market prediction."
+                    description: "Awarded for innovative use of machine learning in financial market prediction.",
+                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                    details: "Recognized for developing a novel LSTM-based stock prediction model that achieved 87% accuracy in live trading simulations."
                 },
                 {
                     id: 2,
                     title: "Speaker at AI Conference",
                     organization: "AI Summit 2023",
                     date: "2023",
-                    description: "Invited speaker on 'Ethical AI Implementation in Healthcare'."
-                },
-                {
-                    id: 3,
-                    title: "Research Excellence Award",
-                    organization: "University of Technology",
-                    date: "2022",
-                    description: "Recognized for outstanding research contributions in computer vision."
-                },
-                {
-                    id: 4,
-                    title: "Top Performer - Kaggle",
-                    organization: "Kaggle",
-                    date: "2021",
-                    description: "Top 10% finish in global data science competition."
+                    description: "Invited speaker on 'Ethical AI Implementation in Healthcare'.",
+                    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                    details: "Delivered keynote speech on ethical considerations in healthcare AI to an audience of 500+ professionals."
                 }
             ],
             testimonials: [
                 {
                     id: 1,
-                    text: "Ngurah's expertise in data science transformed our analytics capabilities. His machine learning models improved our prediction accuracy by 35%.",
+                    text: "Working with Ngurah was transformative for our data analytics capabilities. His machine learning models improved our prediction accuracy by 35% and his attention to detail is exceptional.",
                     author: "Sarah Johnson",
-                    role: "CTO at TechCorp"
+                    role: "CTO at TechCorp",
+                    avatar: "https://randomuser.me/api/portraits/women/32.jpg"
                 },
                 {
                     id: 2,
-                    text: "Working with Ngurah was a game-changer for our research. His statistical insights and technical skills are exceptional.",
+                    text: "Ngurah's statistical insights and technical expertise were instrumental in our research project. He has a unique ability to translate complex concepts into actionable solutions.",
                     author: "Dr. Michael Chen",
-                    role: "Research Director"
+                    role: "Research Director, University AI Lab",
+                    avatar: "https://randomuser.me/api/portraits/men/75.jpg"
                 },
                 {
                     id: 3,
-                    text: "The data visualization dashboard Ngurah created for us revolutionized how we analyze complex datasets. Highly recommended!",
+                    text: "The data visualization platform Ngurah built for us revolutionized how we analyze complex datasets. His work is both technically sophisticated and user-friendly.",
                     author: "Emma Wilson",
-                    role: "Product Manager"
+                    role: "Product Manager at DataTech",
+                    avatar: "https://randomuser.me/api/portraits/women/44.jpg"
+                },
+                {
+                    id: 4,
+                    text: "Ngurah's mentorship helped our junior team members grow significantly. His ability to explain complex concepts clearly is remarkable.",
+                    author: "David Kim",
+                    role: "Team Lead, Analytics Division",
+                    avatar: null
                 }
-            ]
+            ],
+            skills: {
+                statistics: [
+                    { name: "Statistical Analysis", percentage: 90 },
+                    { name: "Regression Models", percentage: 85 },
+                    { name: "Bayesian Statistics", percentage: 80 },
+                    { name: "Time Series Analysis", percentage: 75 },
+                    { name: "Experimental Design", percentage: 85 }
+                ],
+                dataScience: [
+                    { name: "Machine Learning", percentage: 95 },
+                    { name: "Deep Learning", percentage: 85 },
+                    { name: "Natural Language Processing", percentage: 80 },
+                    { name: "Computer Vision", percentage: 75 },
+                    { name: "Data Visualization", percentage: 90 }
+                ],
+                computerScience: [
+                    { name: "Python Programming", percentage: 95 },
+                    { name: "Software Architecture", percentage: 85 },
+                    { name: "Algorithm Design", percentage: 90 },
+                    { name: "Database Systems", percentage: 80 },
+                    { name: "Cloud Computing", percentage: 75 }
+                ]
+            }
         };
 
-        // Calculate statistics
+        // Visitor statistics
+        let visitorStats = {
+            total: 0,
+            today: 0,
+            thisWeek: 0,
+            thisMonth: 0,
+            lastMonth: 0
+        };
+
+        // Calculate statistics with trends
         function calculateStats() {
             const now = new Date();
             const startYear = 2019;
             const yearsExperience = now.getFullYear() - startYear;
             
-            return {
-                projects: portfolioData.projects.filter(p => p.status === 'completed').length,
-                publications: portfolioData.articles.length,
-                certificates: portfolioData.certificates.length,
-                experience: yearsExperience,
-                awards: portfolioData.awards.length,
-                clients: portfolioData.testimonials.length
+            // Mock trend data (would come from analytics in real app)
+            const trends = {
+                projects: { value: portfolioData.projects.filter(p => p.status === 'completed').length, trend: 15 },
+                publications: { value: portfolioData.articles.length, trend: 25 },
+                certificates: { value: portfolioData.certificates.length, trend: 10 },
+                experience: { value: yearsExperience, trend: 0 },
+                awards: { value: portfolioData.awards.length, trend: 20 },
+                clients: { value: portfolioData.testimonials.length, trend: 30 }
             };
+            
+            return trends;
         }
 
         // Create stat card
         function createStatCard(stat, label, icon) {
             const stats = calculateStats();
-            const value = stats[stat];
+            const data = stats[stat];
             
             return `
                 <div class="stat-card">
                     <div class="stat-icon">
                         <i class="${icon}"></i>
                     </div>
-                    <div class="stat-number">${value}</div>
+                    <div class="stat-number">${data.value}</div>
                     <div class="stat-label">${label}</div>
+                    ${data.trend > 0 ? `<span class="stat-trend">↑ ${data.trend}%</span>` : 
+                       data.trend < 0 ? `<span class="stat-trend negative">↓ ${Math.abs(data.trend)}%</span>` : ''}
                 </div>
             `;
         }
@@ -2041,17 +2338,48 @@
 
         // Create testimonial card
         function createTestimonialCard(testimonial) {
+            const avatar = testimonial.avatar ? 
+                `<img src="${testimonial.avatar}" alt="${testimonial.author}" class="author-avatar">` :
+                `<div class="author-icon"><i class="fas fa-user"></i></div>`;
+            
             return `
                 <div class="testimonial-card" data-id="${testimonial.id}">
                     <div class="testimonial-text">
                         ${testimonial.text}
                     </div>
                     <div class="testimonial-author">
+                        ${avatar}
                         <div class="author-info">
                             <h4>${testimonial.author}</h4>
                             <p>${testimonial.role}</p>
                         </div>
                     </div>
+                </div>
+            `;
+        }
+
+        // Create skill category
+        function createSkillCategory(categoryName, skills) {
+            const icons = {
+                statistics: "fas fa-chart-bar",
+                dataScience: "fas fa-brain",
+                computerScience: "fas fa-laptop-code"
+            };
+            
+            return `
+                <div class="skill-category" data-category="${categoryName}">
+                    <h3><i class="${icons[categoryName]}"></i> ${categoryName.split(/(?=[A-Z])/).join(' ')}</h3>
+                    ${skills.map(skill => `
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">${skill.name}</span>
+                                <span class="skill-percentage">${skill.percentage}%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="${skill.percentage}"></div>
+                            </div>
+                        </div>
+                    `).join('')}
                 </div>
             `;
         }
@@ -2105,14 +2433,21 @@
             awardsContent.innerHTML = sortedAwards.map(createAwardCard).join('');
             
             // Render testimonials
-            const testimonialCard = document.getElementById('testimonialCard');
-            testimonialCard.innerHTML = createTestimonialCard(portfolioData.testimonials[0]);
+            updateTestimonial();
             
             // Render testimonial dots
             const testimonialDots = document.getElementById('testimonialDots');
             testimonialDots.innerHTML = portfolioData.testimonials.map((_, index) => 
                 `<div class="testimonial-dot ${index === 0 ? 'active' : ''}" data-index="${index}"></div>`
             ).join('');
+            
+            // Render skills
+            const skillsContainer = document.getElementById('skillsContainer');
+            skillsContainer.innerHTML = `
+                ${createSkillCategory('statistics', portfolioData.skills.statistics)}
+                ${createSkillCategory('dataScience', portfolioData.skills.dataScience)}
+                ${createSkillCategory('computerScience', portfolioData.skills.computerScience)}
+            `;
         }
 
         // Initialize slider functionality
@@ -2125,7 +2460,7 @@
                 const nextBtn = document.getElementById(`${section}Next`);
                 
                 if (content && prevBtn && nextBtn) {
-                    const scrollAmount = 320; // Card width + gap
+                    const scrollAmount = 320;
                     
                     prevBtn.addEventListener('click', () => {
                         content.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
@@ -2135,24 +2470,18 @@
                         content.scrollBy({ left: scrollAmount, behavior: 'smooth' });
                     });
                     
-                    // Update button states based on scroll position
-                    content.addEventListener('scroll', () => {
+                    // Update button states
+                    const updateButtons = () => {
                         const maxScroll = content.scrollWidth - content.clientWidth;
                         prevBtn.disabled = content.scrollLeft <= 0;
                         nextBtn.disabled = content.scrollLeft >= maxScroll;
                         
-                        if (content.scrollLeft <= 0) {
-                            prevBtn.classList.add('disabled');
-                        } else {
-                            prevBtn.classList.remove('disabled');
-                        }
-                        
-                        if (content.scrollLeft >= maxScroll) {
-                            nextBtn.classList.add('disabled');
-                        } else {
-                            nextBtn.classList.remove('disabled');
-                        }
-                    });
+                        prevBtn.classList.toggle('disabled', content.scrollLeft <= 0);
+                        nextBtn.classList.toggle('disabled', content.scrollLeft >= maxScroll);
+                    };
+                    
+                    content.addEventListener('scroll', updateButtons);
+                    updateButtons();
                 }
             });
         }
@@ -2192,6 +2521,7 @@
                         <p><strong>Publication Date:</strong> ${item.date}</p>
                         <p><strong>Abstract:</strong> ${item.abstract}</p>
                         <p><strong>Keywords:</strong> ${item.keywords.join(', ')}</p>
+                        <p><strong>Detailed Description:</strong> ${item.detailedDescription}</p>
                     `;
                     linkText = item.doi !== '#' ? 'View Publication' : 'Coming Soon';
                     linkUrl = item.doi;
@@ -2202,14 +2532,44 @@
                         <p><strong>Company:</strong> ${item.company}</p>
                         <p><strong>Period:</strong> ${item.period}</p>
                         <p><strong>Description:</strong> ${item.description}</p>
-                        <div class="modal-experience-cards">
-                            ${item.responsibilities.map(resp => `
-                                <div class="modal-experience-card">
-                                    <h4>${resp.split(':')[0] || 'Responsibility'}</h4>
-                                    <p>${resp.split(':')[1] || resp}</p>
+                        
+                        <div class="modal-slider">
+                            <h4>Key Achievements:</h4>
+                            <div class="modal-slider-content" id="experienceAchievements">
+                                ${item.achievements.map(achievement => `
+                                    <div class="modal-slider-card">
+                                        <h4>${achievement.split(':')[0] || 'Achievement'}</h4>
+                                        <p>${achievement.split(':')[1] || achievement}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            ${item.achievements.length > 1 ? `
+                                <div class="modal-slider-nav">
+                                    <button class="modal-slider-btn" id="expPrev"><i class="fas fa-chevron-left"></i></button>
+                                    <button class="modal-slider-btn" id="expNext"><i class="fas fa-chevron-right"></i></button>
                                 </div>
-                            `).join('')}
+                            ` : ''}
                         </div>
+                        
+                        ${item.images && item.images.length > 0 ? `
+                            <div class="modal-slider" style="margin-top: 30px;">
+                                <h4>Gallery:</h4>
+                                <div class="modal-slider-content" id="experienceGallery">
+                                    ${item.images.map(img => `
+                                        <div class="modal-slider-card">
+                                            <img src="${img}" alt="Gallery" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+                                            <p>Work environment and achievements</p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                ${item.images.length > 1 ? `
+                                    <div class="modal-slider-nav">
+                                        <button class="modal-slider-btn" id="expGalleryPrev"><i class="fas fa-chevron-left"></i></button>
+                                        <button class="modal-slider-btn" id="expGalleryNext"><i class="fas fa-chevron-right"></i></button>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        ` : ''}
                     `;
                     linkText = 'Learn More';
                     linkUrl = '#';
@@ -2220,14 +2580,44 @@
                         <p><strong>Role:</strong> ${item.role}</p>
                         <p><strong>Period:</strong> ${item.period}</p>
                         <p><strong>Description:</strong> ${item.description}</p>
-                        <div class="modal-experience-cards">
-                            ${item.activities.map(activity => `
-                                <div class="modal-experience-card">
-                                    <h4>${activity.split(':')[0] || 'Activity'}</h4>
-                                    <p>${activity.split(':')[1] || activity}</p>
+                        
+                        <div class="modal-slider">
+                            <h4>Activities & Contributions:</h4>
+                            <div class="modal-slider-content" id="orgActivities">
+                                ${item.activities.map(activity => `
+                                    <div class="modal-slider-card">
+                                        <h4>${activity.split(':')[0] || 'Activity'}</h4>
+                                        <p>${activity.split(':')[1] || activity}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            ${item.activities.length > 1 ? `
+                                <div class="modal-slider-nav">
+                                    <button class="modal-slider-btn" id="orgPrev"><i class="fas fa-chevron-left"></i></button>
+                                    <button class="modal-slider-btn" id="orgNext"><i class="fas fa-chevron-right"></i></button>
                                 </div>
-                            `).join('')}
+                            ` : ''}
                         </div>
+                        
+                        ${item.images && item.images.length > 0 ? `
+                            <div class="modal-slider" style="margin-top: 30px;">
+                                <h4>Gallery:</h4>
+                                <div class="modal-slider-content" id="orgGallery">
+                                    ${item.images.map(img => `
+                                        <div class="modal-slider-card">
+                                            <img src="${img}" alt="Gallery" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+                                            <p>Organization events and activities</p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                ${item.images.length > 1 ? `
+                                    <div class="modal-slider-nav">
+                                        <button class="modal-slider-btn" id="orgGalleryPrev"><i class="fas fa-chevron-left"></i></button>
+                                        <button class="modal-slider-btn" id="orgGalleryNext"><i class="fas fa-chevron-right"></i></button>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        ` : ''}
                     `;
                     linkText = 'Learn More';
                     linkUrl = '#';
@@ -2235,6 +2625,7 @@
                     
                 case 'certificate':
                     content = `
+                        ${item.image ? `<img src="${item.image}" alt="${item.title}" class="modal-image">` : ''}
                         <p><strong>Description:</strong> ${item.description}</p>
                         <p><strong>Issuer:</strong> ${item.issuer}</p>
                         <p><strong>Date:</strong> ${item.date}</p>
@@ -2245,9 +2636,11 @@
                     
                 case 'award':
                     content = `
+                        ${item.image ? `<img src="${item.image}" alt="${item.title}" class="modal-image">` : ''}
                         <p><strong>Organization:</strong> ${item.organization}</p>
                         <p><strong>Date:</strong> ${item.date}</p>
                         <p><strong>Description:</strong> ${item.description}</p>
+                        ${item.details ? `<p><strong>Details:</strong> ${item.details}</p>` : ''}
                     `;
                     linkText = 'Learn More';
                     linkUrl = '#';
@@ -2260,6 +2653,69 @@
             
             modalOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            // Initialize modal sliders
+            setTimeout(() => {
+                initModalSliders();
+            }, 100);
+        }
+
+        function initModalSliders() {
+            // Experience achievements slider
+            const expContent = document.getElementById('experienceAchievements');
+            const expPrev = document.getElementById('expPrev');
+            const expNext = document.getElementById('expNext');
+            
+            if (expContent && expPrev && expNext) {
+                expPrev.addEventListener('click', () => {
+                    expContent.scrollBy({ left: -300, behavior: 'smooth' });
+                });
+                expNext.addEventListener('click', () => {
+                    expContent.scrollBy({ left: 300, behavior: 'smooth' });
+                });
+            }
+            
+            // Experience gallery slider
+            const expGalleryContent = document.getElementById('experienceGallery');
+            const expGalleryPrev = document.getElementById('expGalleryPrev');
+            const expGalleryNext = document.getElementById('expGalleryNext');
+            
+            if (expGalleryContent && expGalleryPrev && expGalleryNext) {
+                expGalleryPrev.addEventListener('click', () => {
+                    expGalleryContent.scrollBy({ left: -300, behavior: 'smooth' });
+                });
+                expGalleryNext.addEventListener('click', () => {
+                    expGalleryContent.scrollBy({ left: 300, behavior: 'smooth' });
+                });
+            }
+            
+            // Organization activities slider
+            const orgContent = document.getElementById('orgActivities');
+            const orgPrev = document.getElementById('orgPrev');
+            const orgNext = document.getElementById('orgNext');
+            
+            if (orgContent && orgPrev && orgNext) {
+                orgPrev.addEventListener('click', () => {
+                    orgContent.scrollBy({ left: -300, behavior: 'smooth' });
+                });
+                orgNext.addEventListener('click', () => {
+                    orgContent.scrollBy({ left: 300, behavior: 'smooth' });
+                });
+            }
+            
+            // Organization gallery slider
+            const orgGalleryContent = document.getElementById('orgGallery');
+            const orgGalleryPrev = document.getElementById('orgGalleryPrev');
+            const orgGalleryNext = document.getElementById('orgGalleryNext');
+            
+            if (orgGalleryContent && orgGalleryPrev && orgGalleryNext) {
+                orgGalleryPrev.addEventListener('click', () => {
+                    orgGalleryContent.scrollBy({ left: -300, behavior: 'smooth' });
+                });
+                orgGalleryNext.addEventListener('click', () => {
+                    orgGalleryContent.scrollBy({ left: 300, behavior: 'smooth' });
+                });
+            }
         }
 
         function closeModal() {
@@ -2305,6 +2761,96 @@
             });
         }
 
+        // Visitor counter
+        function updateVisitorCounter() {
+            // Load from localStorage
+            const stats = JSON.parse(localStorage.getItem('visitorStats') || '{}');
+            const now = new Date();
+            const today = now.toDateString();
+            
+            // Initialize if empty
+            if (!stats.total) {
+                stats.total = 0;
+                stats.daily = {};
+                stats.lastVisit = null;
+            }
+            
+            // Check if first visit today
+            if (stats.lastVisit !== today) {
+                stats.total++;
+                stats.daily[today] = (stats.daily[today] || 0) + 1;
+                stats.lastVisit = today;
+                
+                // Save to localStorage
+                localStorage.setItem('visitorStats', JSON.stringify(stats));
+            }
+            
+            // Calculate weekly and monthly stats
+            const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+            const oneMonthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+            
+            let weekly = 0;
+            let monthly = 0;
+            
+            Object.entries(stats.daily).forEach(([date, count]) => {
+                const visitDate = new Date(date);
+                if (visitDate >= oneWeekAgo) weekly += count;
+                if (visitDate >= oneMonthAgo) monthly += count;
+            });
+            
+            // Update display
+            document.getElementById('visitorCount').textContent = stats.total.toLocaleString();
+            
+            // Store in global variable
+            visitorStats = {
+                total: stats.total,
+                today: stats.daily[today] || 0,
+                thisWeek: weekly,
+                thisMonth: monthly,
+                lastMonth: Math.max(0, stats.total - monthly)
+            };
+            
+            // Update counter every hour
+            setTimeout(updateVisitorCounter, 60 * 60 * 1000);
+        }
+
+        // Custom cursor
+        function initCustomCursor() {
+            const cursorDot = document.getElementById('cursorDot');
+            const cursorOutline = document.getElementById('cursorOutline');
+            
+            document.addEventListener('mousemove', (e) => {
+                cursorDot.style.left = `${e.pageX}px`;
+                cursorDot.style.top = `${e.pageY}px`;
+                
+                cursorOutline.style.left = `${e.pageX}px`;
+                cursorOutline.style.top = `${e.pageY}px`;
+            });
+            
+            // Hover effects
+            const hoverElements = document.querySelectorAll('a, button, .project-card, .article-card, .certificate-card, .experience-card, .award-card, .organization-card');
+            
+            hoverElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorDot.style.transform = 'scale(1.5)';
+                    cursorOutline.style.transform = 'scale(1.5)';
+                });
+                
+                el.addEventListener('mouseleave', () => {
+                    cursorDot.style.transform = 'scale(1)';
+                    cursorOutline.style.transform = 'scale(1)';
+                });
+            });
+            
+            // Click effect
+            document.addEventListener('click', () => {
+                cursorDot.style.transform = 'scale(0.5)';
+                setTimeout(() => {
+                    cursorDot.style.transform = 'scale(1)';
+                }, 100);
+            });
+        }
+
         // Initialize scroll animations
         function initScrollAnimations() {
             const observerOptions = {
@@ -2316,13 +2862,83 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
+                        
+                        // Animate skill bars
+                        if (entry.target.classList.contains('skill-category')) {
+                            setTimeout(() => {
+                                const progressBars = entry.target.querySelectorAll('.skill-progress');
+                                progressBars.forEach(bar => {
+                                    const width = bar.dataset.width;
+                                    bar.style.width = `${width}%`;
+                                });
+                            }, 300);
+                        }
                     }
                 });
             }, observerOptions);
             
-            // Observe elements for animation
-            document.querySelectorAll('.project-card, .article-card, .certificate-card, .experience-card, .award-card, .organization-card, .testimonial-card').forEach(el => {
+            // Observe sections
+            document.querySelectorAll('section').forEach(el => {
                 observer.observe(el);
+            });
+            
+            // Observe cards
+            document.querySelectorAll('.project-card, .article-card, .certificate-card, .experience-card, .award-card, .organization-card, .skill-category, .testimonial-card').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Smooth scrolling with offset
+        function initSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Page transition
+                        const pageTransition = document.getElementById('pageTransition');
+                        pageTransition.classList.add('active');
+                        
+                        setTimeout(() => {
+                            const headerHeight = document.getElementById('header').offsetHeight;
+                            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                            
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                            
+                            // Remove transition after scroll
+                            setTimeout(() => {
+                                pageTransition.classList.remove('active');
+                            }, 600);
+                        }, 300);
+                    }
+                });
+            });
+        }
+
+        // Header hide/show on scroll
+        function initHeaderScroll() {
+            let lastScrollTop = 0;
+            const header = document.getElementById('header');
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    // Scroll down
+                    header.classList.add('hidden');
+                } else {
+                    // Scroll up
+                    header.classList.remove('hidden');
+                }
+                
+                lastScrollTop = scrollTop;
             });
         }
 
@@ -2368,6 +2984,9 @@
             // Render portfolio
             renderPortfolio();
             
+            // Setup visitor counter
+            updateVisitorCounter();
+            
             // Setup ask me
             setupAskMe();
             
@@ -2376,6 +2995,15 @@
             
             // Initialize animations
             initScrollAnimations();
+            
+            // Initialize smooth scrolling
+            initSmoothScrolling();
+            
+            // Initialize header scroll
+            initHeaderScroll();
+            
+            // Initialize custom cursor
+            initCustomCursor();
             
             // Mobile menu
             const menuToggle = document.getElementById('menuToggle');
@@ -2462,32 +3090,18 @@
                 }
             });
             
-            // Smooth scrolling
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if(targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
-                        animatePageTransition();
-                        setTimeout(() => {
-                            window.scrollTo({
-                                top: targetElement.offsetTop - 70,
-                                behavior: 'smooth'
-                            });
-                        }, 300);
-                    }
-                });
-            });
-            
             // Set current year
             document.getElementById('currentYear').textContent = new Date().getFullYear();
             
-            // Initialize testimonial
-            updateTestimonial();
+            // Add pulse animation to important elements
+            const importantElements = document.querySelectorAll('.btn, .header-cv, .logo');
+            importantElements.forEach(el => {
+                el.classList.add('pulse');
+            });
+            
+            // Update float animation
+            const heroImage = document.querySelector('.hero-image');
+            heroImage.classList.add('float-animation');
         });
     </script>
 </body>
