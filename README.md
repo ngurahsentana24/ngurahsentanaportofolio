@@ -1,4 +1,3 @@
-<img width="1770" height="1180" alt="image" src="https://github.com/user-attachments/assets/91212ef3-f714-452d-9aaf-887af778f3b7" /><html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
