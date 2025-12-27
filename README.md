@@ -2165,8 +2165,8 @@
                     tags: ["Data Visualization", "Dashboard", "Education", "Analytics", "Tableau"],
                     link: "#",
                     status: "completed",
-                    detailedDescription: "Comprehensive dashboard analyzing world university rankings from QS, THE, and ARWU. Features include multi-year trend analysis, country comparisons, and correlation between ranking factors.",
-                    technologies: ["Streamlit" "Python", "Pandas", "SQL", "Data Visualization"],
+                    detailedDescription: "Comprehensive dashboard analyzing world university rankings from THE. Features include multi-year trend analysis, country comparisons, and correlation between ranking factors.",
+                    technologies: ["Streamlit", "Python", "Pandas", "SQL", "Data Visualization"], // DIPERBAIKI: tambah koma
                     date: "2025"
                 },
                 {
@@ -2178,7 +2178,7 @@
                     link: "#",
                     status: "completed",
                     detailedDescription: "Full-stack tourism platform featuring interactive maps, destination recommendations, visitor analytics, and booking system. Includes mobile application for tourists and web dashboard for administrators.",
-                    technologies: ["MongoDB", "Leaflet.js","Rshiny",SQL", "Data Visualization"],
+                    technologies: ["R Shiny", "SQL", "Data Visualization"], // DIPERBAIKI: ganti dengan technologies yang sesuai
                     date: "2025"
                 },
                 {
@@ -2190,7 +2190,7 @@
                     link: "#",
                     status: "ongoing",
                     detailedDescription: "Smart waste management system with real-time monitoring of trash levels, collection routes optimization, and recycling rate tracking. Integrates IoT sensor data with predictive analytics.",
-                    technologies: ["Rshiny",SQL", "Data Visualization"],
+                    technologies: ["R Shiny", "SQL", "Data Visualization"], // DIPERBAIKI: ganti dengan technologies yang sesuai
                     date: "2025"
                 },
                 {
@@ -2202,19 +2202,19 @@
                     link: "#",
                     status: "completed",
                     detailedDescription: "Enterprise resource planning system for managing nutrition supply chain from procurement to distribution. Features include inventory management, demand forecasting, and distribution tracking.",
-                    technologies: ["R", "Survey","Data Cleaning", "Data Visualization"],
+                    technologies: ["R", "Survey Analysis", "Data Cleaning", "Data Visualization"], // DIPERBAIKI: ganti dengan technologies yang sesuai
                     date: "2025"
                 },
                 {
                     id: 9,
-                    title: "ICODMI International Conference - SSMI Comitte",
+                    title: "ICODMI International Conference - SSMI Committee",
                     description: "Research paper presentation at international conference on data mining and informatics.",
                     image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
                     tags: ["Conference", "Research", "Academic", "Data Mining", "Presentation"],
                     link: "#",
                     status: "completed",
                     detailedDescription: "Presented research paper on advanced data mining techniques at ICODMI International Conference. Paper focused on scalable machine learning algorithms for large-scale datasets.",
-                    technologies: ["Academic Writing", "Time Management","Collaboration"],
+                    technologies: ["Academic Writing", "Time Management", "Collaboration"], // DIPERBAIKI: tambah koma
                     date: "2025"
                 },
                 {
@@ -2591,25 +2591,25 @@
             ],
             skills: {
                 statistics: [
-                    { name: "Statistical Analysis", percentage: 90 },
-                    { name: "Regression Models", percentage: 85 },
-                    { name: "Bayesian Statistics", percentage: 80 },
-                    { name: "Time Series Analysis", percentage: 75 },
-                    { name: "Experimental Design", percentage: 85 }
+                    { name: "Statistical Analysis", percentage: 92 },
+                    { name: "Regression Models", percentage: 88 },
+                    { name: "Time Series Analysis", percentage: 80 },
+                    { name: "Experimental Design", percentage: 80 },
+                    { name: "Risk Analysis (VaR/CVaR)", percentage: 85 }
                 ],
                 dataScience: [
-                    { name: "Machine Learning", percentage: 95 },
-                    { name: "Deep Learning", percentage: 85 },
+                    { name: "Machine Learning", percentage: 90 },
+                    { name: "Data Visualization", percentage: 95 },
                     { name: "Natural Language Processing", percentage: 80 },
-                    { name: "Computer Vision", percentage: 75 },
-                    { name: "Data Visualization", percentage: 90 }
+                    { name: "Clustering Algorithms", percentage: 85 },
+                    { name: "Dashboard Development", percentage: 92 }
                 ],
-                computerScience: [
-                    { name: "Python Programming", percentage: 95 },
-                    { name: "Software Architecture", percentage: 85 },
-                    { name: "Algorithm Design", percentage: 90 },
-                    { name: "Database Systems", percentage: 80 },
-                    { name: "Cloud Computing", percentage: 75 }
+                programming: [  // Ganti "computerScience" dengan "programming"
+                    { name: "Python Programming", percentage: 90 },
+                    { name: "R Programming", percentage: 90 },
+                    { name: "SQL Database", percentage: 88 },
+                    { name: "Data Analysis", percentage: 92 },
+                    { name: "Statistical Software (SAS)", percentage: 85 }
                 ]
             }
         };
@@ -2836,7 +2836,7 @@
             const icons = {
                 statistics: "fas fa-chart-bar",
                 dataScience: "fas fa-brain",
-                computerScience: "fas fa-laptop-code"
+                programming: "fas fa-laptop-code" 
             };
             
             return `
