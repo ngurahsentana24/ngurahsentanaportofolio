@@ -2609,7 +2609,7 @@
                   role: "Chairman",
                   period: "2022",
                   description: "Student Representative Council at Udayana University.",
-                  image: "https://baliprawara.com/wp-content/uploads/2022/10/171842B3-E2E6-4FAD-9672-6F165238C312-850x560.jpeg", // PERBAIKAN: Menambahkan gambar
+                  image: "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/DPM.jpeg", // PERBAIKAN: Menambahkan gambar
                   activities: [
                     "Led the legislative body and managed student aspirations",
                     "Oversaw organizational governance",
@@ -2623,7 +2623,7 @@
                   role: "Commission III for Aspiration and Advocacy",
                   period: "2021",
                   description: "Student Representative Council at Udayana University.",
-                  image: "https://baliprawara.com/wp-content/uploads/2022/10/171842B3-E2E6-4FAD-9672-6F165238C312-850x560.jpeg", // PERBAIKAN: Menambahkan gambar
+                  image: "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/DPM.jpeg", // PERBAIKAN: Menambahkan gambar
                   activities: [
                     "Contributed to student representation and policy discussions",
                     "Served as Chair of the Temu Rektor event",
@@ -2668,7 +2668,7 @@
                     issuer: "IBM",
                     date: "2024",
                     link: "",
-                    image: "https://d15cw65ipctsrr.cloudfront.net/78/0b8c921b6346f69278f39ba6ca8128/Professional-Certificate---IBM-Machine-Language.png"
+                    image: "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/IBMML.png"
                 },
                 {
                     id: 2,
