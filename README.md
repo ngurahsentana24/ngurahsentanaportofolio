@@ -48,7 +48,6 @@
             background-color: var(--primary-color);
             min-height: 100vh;
             overflow-x: hidden;
-            transition: background-color 0.3s ease;
             cursor: default;
         }
 
@@ -475,7 +474,7 @@
             cursor: not-allowed;
         }
 
-        /* Cards */
+        /* Cards - PERBAIKAN: menambahkan gambar untuk experience dan organization */
         .project-card, .article-card, .certificate-card, .experience-card, .award-card, .organization-card {
             flex: 0 0 320px;
             background: white;
@@ -503,13 +502,14 @@
             border-color: var(--accent-color);
         }
 
-        .project-image-container {
+        /* PERBAIKAN: Menambahkan image container untuk experience dan organization */
+        .project-image-container, .experience-image-container, .organization-image-container {
             height: 180px;
             overflow: hidden;
             position: relative;
         }
 
-        .project-image, .article-image {
+        .project-image, .article-image, .experience-image, .organization-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -517,7 +517,9 @@
         }
 
         .project-card:hover .project-image,
-        .article-card:hover .article-image {
+        .article-card:hover .article-image,
+        .experience-card:hover .experience-image,
+        .organization-card:hover .organization-image {
             transform: scale(1.05);
         }
 
@@ -617,6 +619,8 @@
         }
 
         /* Certificates & Experience */
+        /* DIHAPUS karena akan menggunakan gambar */
+        /*
         .certificate-icon, .experience-icon {
             padding: 25px 25px 15px;
             text-align: center;
@@ -627,8 +631,47 @@
             font-size: 2.5rem;
             color: var(--accent-color);
         }
+        */
+
+        /* PERBAIKAN: Menambahkan image container untuk certificate */
+        .certificate-image-container {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .certificate-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .certificate-card:hover .certificate-image {
+            transform: scale(1.05);
+        }
+
+        /* PERBAIKAN: Menambahkan image container untuk award */
+        .award-image-container {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .award-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .award-card:hover .award-image {
+            transform: scale(1.05);
+        }
 
         /* Organizations */
+        /* DIHAPUS karena akan menggunakan gambar */
+        /*
         .organization-icon {
             padding: 25px 25px 15px;
             text-align: center;
@@ -639,6 +682,7 @@
             font-size: 2.5rem;
             color: var(--accent-color);
         }
+        */
 
         /* Collaboration Section */
         .collaboration-section {
@@ -2108,7 +2152,7 @@
         // Current language
         let currentLang = 'en';
 
-        // Data for portfolio - DIPERBAIKI: syntax errors fixed
+        // Data for portfolio - DIPERBAIKI: Menambahkan gambar untuk experience dan organizations
         const portfolioData = {
             projects: [
                 {
@@ -2289,6 +2333,7 @@
                     company: "Freelance & Academic Projects",
                     period: "2023 – Present",
                     description: "Applying statistical methods, data science techniques, and machine learning approaches to generate insights and contribute to knowledge development. Conducting data-driven experiments and analyzing complex datasets to address real-world problems.",
+                    image: "https://images.unsplash.com/photo-1554475900-0a0350bad5c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80", // PERBAIKAN: Menambahkan gambar
                     achievements: [
                         "Published research papers in national journal about statistical and machine learning",
                         "Developed predictive models for agricultural and financial applications with high accuracy rates",
@@ -2306,6 +2351,7 @@
                     company: "Freelance Projects",
                     period: "2023 – Present",
                     description: "Providing end-to-end solutions in data collection, cleansing, analysis, and visualization to support diverse business needs. Building predictive models, analyzing performance metrics, developing dashboards, and delivering actionable insights across various industries.",
+                    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80", // PERBAIKAN: Menambahkan gambar
                     achievements: [
                         "Delivered data-driven solutions for clients across e-commerce, healthcare, and tourism sectors",
                         "Built interactive dashboards that improved decision-making efficiency",
@@ -2323,6 +2369,7 @@
                     company: "Lumbung Group",
                     period: "Apr 2024 – 2025",
                     description: "Overseeing the end-to-end process of transforming raw data into actionable business insights. Analyzing sales performance, conducting product and shop analysis, and leading comprehensive business evaluations to identify growth opportunities and optimize company strategies.",
+                    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80", // PERBAIKAN: Menambahkan gambar
                     achievements: [
                         "Led analyst team in delivering insights that contributed to 30% sales growth in target segments",
                         "Developed and implemented data analysis frameworks reducing report generation time by 50%",
@@ -2341,6 +2388,7 @@
                     company: "Lumbung Group",
                     period: "Jan 2023 – Mar 2024",
                     description: "Analyzing sales data and performance trends, conducting in-depth product and shop analysis, and carrying out comprehensive business analysis to identify growth opportunities and improve operational efficiency.",
+                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80", // PERBAIKAN: Menambahkan gambar
                     achievements: [
                         "Identified key market trends that led to development of 3 new successful product lines",
                         "Optimized pricing strategies resulting in 8% increase in profit margins",
@@ -2359,6 +2407,7 @@
                     company: "University Academic Department",
                     period: "2025",
                     description: "Assisted in teaching undergraduate courses in Data Science, Relational Data Management, and Engineering Statistics. Conducted lab sessions, developed course materials, and provided individual tutoring to students.",
+                    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80", // PERBAIKAN: Menambahkan gambar
                     achievements: [
                         "Improved average student performance",
                         "Developed practical case studies that enhanced student engagement and learning outcomes",
@@ -2376,6 +2425,7 @@
                     company: "Ruang Guru",
                     period: "Feb 2022 – Jul 2022",
                     description: "Gained solid knowledge in SQL, data analysis, and data visualization by working on various projects and case studies. Translated raw data into meaningful insights and actionable recommendations for educational technology applications.",
+                    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80", // PERBAIKAN: Menambahkan gambar
                     achievements: [
                         "Developed user engagement analysis dashboard that identified key drop-off points",
                         "Created learning effectiveness metrics that informed curriculum improvements",
@@ -2389,82 +2439,88 @@
             ],
             organizations: [
                 {
-                  "id": 1,
-                  "title": "HIMPRO PASCASARJANA STATISTIKA",
-                  "role": "Chairman",
-                  "period": "2025",
-                  "description": "Postgraduate Statistics Student Association.",
-                  "activities": [
+                  id: 1,
+                  title: "HIMPRO PASCASARJANA STATISTIKA",
+                  role: "Chairman",
+                  period: "2025",
+                  description: "Postgraduate Statistics Student Association.",
+                  image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80", // PERBAIKAN: Menambahkan gambar
+                  activities: [
                     "Led academic, organizational, and community engagement programs",
                     "Coordinated events and fostered collaboration among postgraduate students",
                     "Enhanced the organization's contribution to scientific and professional development"
                   ],
-                  "images": []
+                  images: []
                 },
                 {
-                  "id": 2,
-                  "title": "Keluarga LPDP IPB 12.0",
-                  "role": "Head of the Social and Community Service Division",
-                  "period": "2025",
-                  "description": "Social and community service division.",
-                  "activities": [
+                  id: 2,
+                  title: "Keluarga LPDP IPB 12.0",
+                  role: "Head of the Social and Community Service Division",
+                  period: "2025",
+                  description: "Social and community service division.",
+                  image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80", // PERBAIKAN: Menambahkan gambar
+                  activities: [
                     "Coordinated social initiatives and managed community engagement programs",
                     "Led teams in delivering impactful projects",
                     "Strengthened student contributions to society"
                   ],
-                  "images": []
+                  images: []
                 },
                 {
-                  "id": 3,
-                  "title": "DPM PM Udayana",
-                  "role": "Chairman",
-                  "period": "2022",
-                  "description": "Student Representative Council at Udayana University.",
-                  "activities": [
+                  id: 3,
+                  title: "DPM PM Udayana",
+                  role: "Chairman",
+                  period: "2022",
+                  description: "Student Representative Council at Udayana University.",
+                  image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80", // PERBAIKAN: Menambahkan gambar
+                  activities: [
                     "Led the legislative body and managed student aspirations",
                     "Oversaw organizational governance",
                     "Ensured strategic collaboration between students and university leadership"
                   ],
-                  "images": []
+                  images: []
                 },
                 {
-                  "id": 4,
-                  "title": "DPM PM Udayana",
-                  "role": "Commission III for Aspiration and Advocacy",
-                  "period": "2021",
-                  "description": "Student Representative Council at Udayana University.",
-                  "activities": [
+                  id: 4,
+                  title: "DPM PM Udayana",
+                  role: "Commission III for Aspiration and Advocacy",
+                  period: "2021",
+                  description: "Student Representative Council at Udayana University.",
+                  image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80", // PERBAIKAN: Menambahkan gambar
+                  activities: [
                     "Contributed to student representation and policy discussions",
                     "Served as Chair of the Temu Rektor event",
                     "Led coordination and execution of strategic forum between students and university leadership"
                   ],
-                  "images": []
+                  images: []
                 },
                 {
-                  "id": 5,
-                  "title": "UKM PRAMUKA RACANA UDAYANA MAHENDRADATTA",
-                  "role": "Vice Chairman",
-                  "period": "2021",
-                  "description": "Scout Student Organization.",
-                  "activities": [
+                  id: 5,
+                  title: "UKM PRAMUKA RACANA UDAYANA MAHENDRADATTA",
+                  role: "Vice Chairman",
+                  period: "2021",
+                  description: "Scout Student Organization.",
+                  image: "https://images.unsplash.com/photo-1524178234883-043d5c3f3cf4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80", // PERBAIKAN: Menambahkan gambar
+                  activities: [
                     "Developed leadership and organizational management skills",
                     "Chaired the major event TAKSAKA",
                     "Oversaw planning, coordination, and successful execution of events"
                   ],
-                  "images": []
+                  images: []
                 },
                 {
-                  "id": 6,
-                  "title": "UDAYANA FOCUS",
-                  "role": "Vice Chairman",
-                  "period": "2020",
-                  "description": "Student organization in creative media.",
-                  "activities": [
+                  id: 6,
+                  title: "UDAYANA FOCUS",
+                  role: "Vice Chairman",
+                  period: "2020",
+                  description: "Student organization in creative media.",
+                  image: "https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80", // PERBAIKAN: Menambahkan gambar
+                  activities: [
                     "Led activities and enhanced members' creative skills",
                     "Managed visual storytelling projects",
                     "Chaired the flagship event Ufonity, overseeing its full execution"
                   ],
-                  "images": []
+                  images: []
                 }
             ],
             certificates: [
@@ -2578,7 +2634,7 @@
                     image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
                     details: "Awarded 3rd place in GEMASTE essay competition."
                 }
-            ]
+            ],
             collaborations: [
                 {
                     id: 1,
@@ -2836,17 +2892,17 @@
             `;
         }
 
-        // Create experience card
+        // PERBAIKAN: Mengubah createExperienceCard untuk menampilkan gambar
         function createExperienceCard(experience) {
             return `
                 <div class="experience-card" data-id="${experience.id}" data-type="experience">
-                    <div class="experience-icon">
-                        <i class="fas fa-briefcase"></i>
+                    <div class="experience-image-container">
+                        <img src="${experience.image}" alt="${experience.title}" class="experience-image">
                     </div>
                     <div class="card-content">
                         <h3>${experience.title}</h3>
                         <p><strong>${experience.company}</strong></p>
-                        <p>${experience.description}</p>
+                        <p>${experience.description.substring(0, 100)}...</p>
                         <div class="card-footer">
                             <span class="card-date">${experience.period}</span>
                             <a href="#" class="view-more">View Details <i class="fas fa-arrow-right"></i></a>
@@ -2856,12 +2912,12 @@
             `;
         }
 
-        // Create organization card
+        // PERBAIKAN: Mengubah createOrganizationCard untuk menampilkan gambar
         function createOrganizationCard(organization) {
             return `
                 <div class="organization-card" data-id="${organization.id}" data-type="organization">
-                    <div class="organization-icon">
-                        <i class="fas fa-users"></i>
+                    <div class="organization-image-container">
+                        <img src="${organization.image}" alt="${organization.title}" class="organization-image">
                     </div>
                     <div class="card-content">
                         <h3>${organization.title}</h3>
@@ -2876,12 +2932,12 @@
             `;
         }
 
-        // Create certificate card
+        // PERBAIKAN: Mengubah createCertificateCard untuk menampilkan gambar
         function createCertificateCard(certificate) {
             return `
                 <div class="certificate-card" data-id="${certificate.id}" data-type="certificate">
-                    <div class="certificate-icon">
-                        <i class="fas fa-award"></i>
+                    <div class="certificate-image-container">
+                        <img src="${certificate.image}" alt="${certificate.title}" class="certificate-image">
                     </div>
                     <div class="card-content">
                         <h3>${certificate.title}</h3>
@@ -2896,12 +2952,12 @@
             `;
         }
 
-        // Create award card
+        // PERBAIKAN: Mengubah createAwardCard untuk menampilkan gambar
         function createAwardCard(award) {
             return `
                 <div class="award-card" data-id="${award.id}" data-type="award">
-                    <div class="experience-icon">
-                        <i class="fas fa-trophy"></i>
+                    <div class="award-image-container">
+                        <img src="${award.image}" alt="${award.title}" class="award-image">
                     </div>
                     <div class="card-content">
                         <h3>${award.title}</h3>
@@ -3192,6 +3248,7 @@
                     
                 case 'experience':
                     content = `
+                        <img src="${item.image}" alt="${item.title}" class="modal-image">
                         <p><strong>Company:</strong> ${item.company}</p>
                         <p><strong>Period:</strong> ${item.period}</p>
                         <p><strong>Description:</strong> ${item.description}</p>
@@ -3240,6 +3297,7 @@
                     
                 case 'organization':
                     content = `
+                        <img src="${item.image}" alt="${item.title}" class="modal-image">
                         <p><strong>Role:</strong> ${item.role}</p>
                         <p><strong>Period:</strong> ${item.period}</p>
                         <p><strong>Description:</strong> ${item.description}</p>
