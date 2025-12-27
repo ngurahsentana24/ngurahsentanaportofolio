@@ -474,7 +474,6 @@
             cursor: not-allowed;
         }
 
-        /* Cards - PERBAIKAN: menambahkan gambar untuk experience dan organization */
         .project-card, .article-card, .certificate-card, .experience-card, .award-card, .organization-card {
             flex: 0 0 320px;
             background: white;
@@ -1661,7 +1660,7 @@
                         <button class="active" id="langEN">EN</button>
                         <button id="langID">ID</button>
                     </div>
-                    <a href="https://drive.google.com/file/d/1EXAMPLE/view?usp=sharing" target="_blank" class="header-cv">
+                    <a href="https://drive.google.com/file/d/1mOZOAM-TmwQTRuSFJh-xNK2BA4WfJYDD/view?usp=drive_link" target="_blank" class="header-cv">
                         <i class="fas fa-download"></i>
                         <span>CV</span>
                     </a>
@@ -1690,7 +1689,7 @@
                 </div>
                 <div class="hero-image float-animation">
                     <div class="profile-img-container">
-                        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Foto Ngurah Sentana" class="profile-img">
+                        <img src="https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/pribadi.jpeg" alt="Foto Ngurah Sentana" class="profile-img">
                     </div>
                 </div>
             </div>
@@ -2207,9 +2206,9 @@
                     id: 5,
                     title: "World University Ranking Dashboard Report",
                     description: "Interactive dashboard for analyzing and comparing global university rankings across multiple metrics.",
-                    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                    image: "https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=1464&q=80",
                     tags: ["Data Visualization", "Dashboard", "Education", "Analytics", "Tableau"],
-                    link: "#",
+                    link: "https://worldrankdashboard.streamlit.app/",
                     status: "completed",
                     detailedDescription: "Comprehensive dashboard analyzing world university rankings from THE. Features include multi-year trend analysis, country comparisons, and correlation between ranking factors.",
                     technologies: ["Streamlit", "Python", "Pandas", "SQL", "Data Visualization"],
@@ -2221,7 +2220,7 @@
                     description: "Digital platform for promoting and managing tourism destinations in West Java province.",
                     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
                     tags: ["Web Development", "Tourism", "Dashboard", "GIS", "Mobile App"],
-                    link: "#",
+                    link: "https://ngurahsentana24.shinyapps.io/Wisatajawabarat",
                     status: "completed",
                     detailedDescription: "Full-stack tourism platform featuring interactive maps, destination recommendations, visitor analytics, and booking system. Includes mobile application for tourists and web dashboard for administrators.",
                     technologies: ["R Shiny", "SQL", "JavaScript", "Leaflet", "Express.js"],
@@ -2243,7 +2242,7 @@
                     id: 8,
                     title: "Supply Chain Management System - National Nutrition Agency",
                     description: "Digital transformation of supply chain operations for national nutrition distribution programs.",
-                    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                    image: "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/sppg.jpeg",
                     tags: ["Supply Chain", "Management System", "Logistics", "ERP", "Public Health"],
                     link: "#",
                     status: "completed",
@@ -2255,7 +2254,7 @@
                     id: 9,
                     title: "ICODMI International Conference - SSMI Committee",
                     description: "Research paper presentation at international conference on data mining and informatics.",
-                    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                    image: "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/icodmi.jpeg",
                     tags: ["Conference", "Research", "Academic", "Data Mining", "Presentation"],
                     link: "#",
                     status: "completed",
@@ -2279,7 +2278,7 @@
                     id: 11,
                     title: "Teaching Assistant - Relational Data Management Course",
                     description: "Assisted in teaching database management systems focusing on relational models and SQL.",
-                    image: "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                    image: "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/mdr.jpeg",
                     tags: ["Database", "SQL", "Teaching", "Data Modeling", "SAS"],
                     link: "#",
                     status: "completed",
@@ -2291,7 +2290,7 @@
                     id: 12,
                     title: "Teaching Assistant - Engineering Statistics Course",
                     description: "Assisted in teaching statistical methods for engineering applications and data analysis.",
-                    image: "https://images.unsplash.com/photo-1554475900-0a0350bad5c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                    image: "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/statek.jpeg",
                     tags: ["Statistics", "Engineering", "Teaching", "R", "Data Analysis"],
                     link: "#",
                     status: "completed",
@@ -2389,7 +2388,7 @@
                     "id": 8,
                     "title": "Development of Situ Gede Lake Tourism and Local MSMEs through Web-Based Digital Promotion and Data Analysis",
                     "description": "On Progress",
-                    "image": "",
+                    "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
                     "journal": "",
                     "date": "",
                     "doi": "",
@@ -2401,7 +2400,7 @@
                     "id": 9,
                     "title": "Modeling Climate Change In The Asean Region Using Co₂ Trade Network-Based Spatial-Temporal Graph Neural Network (St-Gnn) And Impact Analysis On Indonesia",
                     "description": "On Reviewer",
-                    "image": "",
+                    "image": "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
                     "journal": "",
                     "date": "",
                     "doi": "",
@@ -2413,7 +2412,7 @@
                     "id": 10,
                     "title": "Optimizing Sustainable and Efficient Supply Chains A Hybrid Metaheuristic Approach Combining Komodo Mlipir, Human Learning, and Simulated Annealing",
                     "description": "On Progress",
-                    "image": "",
+                    "image": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
                     "journal": "",
                     "date": "",
                     "doi": "",
@@ -2425,7 +2424,7 @@
                     "id": 11,
                     "title": "Multi-Explainable Machine Learning Approach for Food Security Index Classification in Indonesia",
                     "description": "On Progress",
-                    "image": "",
+                    "image": "ttps://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
                     "journal": "",
                     "date": "",
                     "doi": "",
@@ -2437,7 +2436,7 @@
                     "id": 12,
                     "title": "Perbandingan Metode Interpolasi Spasial Idw Dan Adaptive Idw Untuk Estimasi Konsentrasi Pm2.5 (Studi Kasus : Amerika Serikat Tahun 2024)",
                     "description": "On Progress",
-                    "image": "",
+                    "image": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
                     "journal": "",
                     "date": "",
                     "doi": "",
@@ -2491,7 +2490,7 @@
                         "Created comprehensive analytics for supply chain and waste management systems"
                     ],
                     images: [
-                        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                        "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/sppg.jpeg",
                         "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
                     ]
                 },
@@ -2547,8 +2546,8 @@
                         "Mentored student groups on 10+ capstone projects"
                     ],
                     images: [
-                        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                        "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+                        "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/mdr.jpeg",
+                        "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/statek.jpeg"
                     ]
                 },
                 {
@@ -2582,7 +2581,10 @@
                     "Coordinated events and fostered collaboration among postgraduate students",
                     "Enhanced the organization's contribution to scientific and professional development"
                   ],
-                  images: []
+                  images: [
+                      "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/himpro.jpeg",
+                      "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/SSD.jpeg",
+                  ]
                 },
                 {
                   id: 2,
@@ -2596,7 +2598,10 @@
                     "Led teams in delivering impactful projects",
                     "Strengthened student contributions to society"
                   ],
-                  images: []
+                  images: [
+                      "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/sosmas2.jpeg",
+                      "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/Sosmas.jpeg"
+                  ]
                 },
                 {
                   id: 3,
@@ -2832,27 +2837,27 @@
             photos: [
                 {
                     id: 1,
-                    url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                    alt: "Presenting at Data Science Conference",
-                    title: "Conference Presentation",
-                    date: "2023",
-                    description: "Presenting research findings at International Data Science Conference"
+                    url: "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/SSD.jpeg",
+                    alt: "Statistic and Data Science Student",
+                    title: "Statistic and Data Science Student",
+                    date: "2024",
+                    description: "Statistic and Data Science Student IPB University"
                 },
                 {
                     id: 2,
-                    url: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    url: "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/himpro.jpeg",
                     alt: "Team Collaboration",
-                    title: "Team Collaboration Session",
-                    date: "2023",
-                    description: "Collaborating with team members on machine learning project"
+                    title: "Himpo Pascasasrjana Statistika dan Sains Data",
+                    date: "2025",
+                    description: "Collaborating with team members on Himpo Pascasasrjana Statistika dan Sains Data"
                 },
                 {
                     id: 3,
-                    url: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                    alt: "Award Ceremony",
-                    title: "Receiving Best Project Award",
-                    date: "2022",
-                    description: "Receiving award for best data science project"
+                    url: "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/sosmas2.jpeg",
+                    alt: "Team",
+                    title: "LPDP IPB 12.0",
+                    date: "2025",
+                    description: "SOSMAS LPDP IPB 12.0"
                 },
                 {
                     id: 4,
@@ -2864,19 +2869,19 @@
                 },
                 {
                     id: 5,
-                    url: "https://images.unsplash.com/photo-1556761175-b413ae4ab686?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                    alt: "Project Development",
-                    title: "Project Development Session",
-                    date: "2023",
-                    description: "Working on data visualization project with team"
+                    url: "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/mdr.jpeg",
+                    alt: "Mentoring with engginering statistic student",
+                    title: "Mentoring with engginering statistic student",
+                    date: "2025",
+                    description: "Mentoring with statistic student"
                 },
                 {
                     id: 6,
-                    url: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    url: "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/statek.jpeg",
                     alt: "Mentoring Session",
-                    title: "Mentoring Junior Developers",
+                    title: "Mentoring with engginering statistic student",
                     date: "2023",
-                    description: "Mentoring session with junior data science team members"
+                    description: "Mentoring with engginering statistic student"
                 }
             ],
             testimonials: [
