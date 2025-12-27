@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* Semua kode CSS yang sama */
         :root {
             --primary-color: #ffffff;
             --secondary-color: #1a1a2e;
@@ -2555,14 +2554,14 @@
                     company: "Ruang Guru",
                     period: "Feb 2022 – Jul 2022",
                     description: "Gained solid knowledge in SQL, data analysis, and data visualization by working on various projects and case studies. Translated raw data into meaningful insights and actionable recommendations for educational technology applications.",
-                    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80", // PERBAIKAN: Menambahkan gambar
+                    image: "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/intern.jpeg", // PERBAIKAN: Menambahkan gambar
                     achievements: [
                         "Developed user engagement analysis dashboard that identified key drop-off points",
                         "Created learning effectiveness metrics that informed curriculum improvements",
                         "Presented data-driven recommendations"
                     ],
                     images: [
-                        "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                        "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/intern.jpeg",
                         "https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
                     ]
                 }
