@@ -2461,9 +2461,9 @@
                     id: 1,
                     title: "Researcher",
                     company: "Freelance & Academic Projects",
-                    period: "2023 – Present",
+                    period: "2025 – Present",
                     description: "Applying statistical methods, data science techniques, and machine learning approaches to generate insights and contribute to knowledge development. Conducting data-driven experiments and analyzing complex datasets to address real-world problems.",
-                    image: "https://images.unsplash.com/photo-1554475900-0a0350bad5c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80", // PERBAIKAN: Menambahkan gambar
+                    image: "https://raw.githubusercontent.com/ngurahsentana24/Archive/main/photos/pribadi.jpeg", // PERBAIKAN: Menambahkan gambar
                     achievements: [
                         "Published research papers in national journal about statistical and machine learning",
                         "Developed predictive models for agricultural and financial applications with high accuracy rates",
@@ -2497,7 +2497,7 @@
                     id: 3,
                     title: "Data Analyst Lead",
                     company: "Lumbung Group",
-                    period: "Apr 2024 – 2025",
+                    period: "Apr 2024 – Present",
                     description: "Overseeing the end-to-end process of transforming raw data into actionable business insights. Analyzing sales performance, conducting product and shop analysis, and leading comprehensive business evaluations to identify growth opportunities and optimize company strategies.",
                     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80", // PERBAIKAN: Menambahkan gambar
                     achievements: [
